@@ -11,6 +11,13 @@
 		A06C4B0723213694009FB0B2 /* UILabel+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C4B0223213693009FB0B2 /* UILabel+SQExtension.swift */; };
 		A06C4B0823213694009FB0B2 /* UIView+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C4B0323213694009FB0B2 /* UIView+SQExtension.swift */; };
 		A06C4B0923213694009FB0B2 /* UIButton+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C4B0423213694009FB0B2 /* UIButton+SQExtension.swift */; };
+		A0D1213B23225BBF001F266E /* NSObject+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D1213A23225BBF001F266E /* NSObject+SQExtension.swift */; };
+		A0D1213D2322659E001F266E /* String+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D1213C2322659E001F266E /* String+SQExtension.swift */; };
+		A0D1213F2322730C001F266E /* UIViewController+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D1213E2322730C001F266E /* UIViewController+SQExtension.swift */; };
+		A0D121412322749B001F266E /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D121402322749B001F266E /* UITableView+Extension.swift */; };
+		A0D121432322751B001F266E /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D121422322751A001F266E /* UICollectionView+Extension.swift */; };
+		A0D12145232275B1001F266E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D12144232275B1001F266E /* String+Extension.swift */; };
+		A0D12147232275C5001F266E /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D12146232275C5001F266E /* Date+Extension.swift */; };
 		C32D2010229A2104006279C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D200F229A2104006279C5 /* AppDelegate.swift */; };
 		C32D2012229A2104006279C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D2011229A2104006279C5 /* ViewController.swift */; };
 		C32D2015229A2104006279C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C32D2013229A2104006279C5 /* Main.storyboard */; };
@@ -37,6 +44,13 @@
 		A06C4B0223213693009FB0B2 /* UILabel+SQExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+SQExtension.swift"; sourceTree = "<group>"; };
 		A06C4B0323213694009FB0B2 /* UIView+SQExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SQExtension.swift"; sourceTree = "<group>"; };
 		A06C4B0423213694009FB0B2 /* UIButton+SQExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+SQExtension.swift"; sourceTree = "<group>"; };
+		A0D1213A23225BBF001F266E /* NSObject+SQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+SQExtension.swift"; sourceTree = "<group>"; };
+		A0D1213C2322659E001F266E /* String+SQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+SQExtension.swift"; sourceTree = "<group>"; };
+		A0D1213E2322730C001F266E /* UIViewController+SQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SQExtension.swift"; sourceTree = "<group>"; };
+		A0D121402322749B001F266E /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		A0D121422322751A001F266E /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		A0D12144232275B1001F266E /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		A0D12146232275C5001F266E /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C32D200C229A2104006279C5 /* SwiftBaseExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBaseExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C32D200F229A2104006279C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C32D2011229A2104006279C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -208,12 +222,19 @@
 		C32D204A229AA4F8006279C5 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				A0D12146232275C5001F266E /* Date+Extension.swift */,
+				A0D12144232275B1001F266E /* String+Extension.swift */,
+				A0D121422322751A001F266E /* UICollectionView+Extension.swift */,
+				A0D121402322749B001F266E /* UITableView+Extension.swift */,
 				A06C4B0423213694009FB0B2 /* UIButton+SQExtension.swift */,
 				A06C4B0123213693009FB0B2 /* UIColor+SQExtension.swift */,
 				A06C4B0223213693009FB0B2 /* UILabel+SQExtension.swift */,
 				A06C4B0323213694009FB0B2 /* UIView+SQExtension.swift */,
 				C32D204B229AA607006279C5 /* UIImage+SQExtension.swift */,
 				C32D2052229B1845006279C5 /* UIImageView+SQExtension.swift */,
+				A0D1213A23225BBF001F266E /* NSObject+SQExtension.swift */,
+				A0D1213C2322659E001F266E /* String+SQExtension.swift */,
+				A0D1213E2322730C001F266E /* UIViewController+SQExtension.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -300,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0D12147232275C5001F266E /* Date+Extension.swift in Sources */,
 				C32D2046229A9B33006279C5 /* MeController.swift in Sources */,
 				A06C4B0923213694009FB0B2 /* UIButton+SQExtension.swift in Sources */,
 				A06C4B0623213694009FB0B2 /* UIColor+SQExtension.swift in Sources */,
@@ -309,15 +331,21 @@
 				C32D2053229B1845006279C5 /* UIImageView+SQExtension.swift in Sources */,
 				C32D204F229AEAF0006279C5 /* GlobalConfigDefinition.swift in Sources */,
 				C32D204C229AA607006279C5 /* UIImage+SQExtension.swift in Sources */,
+				A0D121432322751B001F266E /* UICollectionView+Extension.swift in Sources */,
 				C32D2012229A2104006279C5 /* ViewController.swift in Sources */,
+				A0D1213B23225BBF001F266E /* NSObject+SQExtension.swift in Sources */,
+				A0D121412322749B001F266E /* UITableView+Extension.swift in Sources */,
 				A06C4B0823213694009FB0B2 /* UIView+SQExtension.swift in Sources */,
 				C32D2040229A9AF6006279C5 /* HomeController.swift in Sources */,
 				C32D2044229A9B1B006279C5 /* ThreeController.swift in Sources */,
+				A0D12145232275B1001F266E /* String+Extension.swift in Sources */,
+				A0D1213D2322659E001F266E /* String+SQExtension.swift in Sources */,
 				C32D2010229A2104006279C5 /* AppDelegate.swift in Sources */,
 				C32D2048229A9C9D006279C5 /* SQTabBarController.swift in Sources */,
 				C32D203C229A9132006279C5 /* SQTabBar.swift in Sources */,
 				C32D203A229A7AFE006279C5 /* SQBaseViewController.swift in Sources */,
 				A06C4B0723213694009FB0B2 /* UILabel+SQExtension.swift in Sources */,
+				A0D1213F2322730C001F266E /* UIViewController+SQExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,14 +513,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SwiftBaseExample/Info.plist;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftBaseExample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zhangshaoqingkaifa.SwiftBaseExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -502,14 +532,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SwiftBaseExample/Info.plist;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftBaseExample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zhangshaoqingkaifa.SwiftBaseExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

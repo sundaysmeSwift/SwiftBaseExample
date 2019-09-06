@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarOrientation = .portrait
         window = UIWindow.init()
         window?.frame = UIScreen.main.bounds
+        window?.rootViewController = ViewController.init()
         window?.makeKeyAndVisible()
         
         return true
