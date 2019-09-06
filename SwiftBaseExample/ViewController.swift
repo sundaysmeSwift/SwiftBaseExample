@@ -10,16 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         
-        let nibName = "\(self)".split{$0 == "."}.map(String.init).last!
-//        let nibName = "\(self)"
-//        let vc = UIViewController()
-        print(nibName)
         
-//        let ab = self.getStringPrice(price: 12)
+        let str1 = trimNumStrWithText(text: "003556.03652346")
+        let str2 = decimalString(string: str1)
+        let str3 = NSMutableAttributedString.getPriceAttributePriceTextDouble(priceText: "1234.11223", textFont: UIFont.systemFont(ofSize: 14), moneyFont: UIFont.systemFont(ofSize: 10), textColor: UIColor.red, moneyColor: UIColor.black)
+        print(str3)
+        self.label?.attributedText = str3
+        print(str2)
     }
 
 
