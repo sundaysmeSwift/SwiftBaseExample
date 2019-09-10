@@ -8,24 +8,54 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var label: UILabel!
+    
+    
+//    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: Bundle!) {
+//
+//        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+//
+//    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//       
+//    }
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)!
+//        fatalError("init(coder:) has not been implemented")
+//
+//    }
+
+//    convenience init(){
+//        var nibNameOrNil = String?("ViewController")
+//        if Bundle.main.path(forResource: nibNameOrNil, ofType: "xib") == nil {
+//         nibNameOrNil = nil
+//          }
+//       self.init(nibName:nibNameOrNil, bundle: nil)
+//       
+//    }
+
+    override func didReceiveMemoryWarning() {
+        
+        super.didReceiveMemoryWarning()
+        
+        // Dispose of any resources that can be recreated.
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        
-        let str1 = trimNumStrWithText(text: "003556.03652346")
-        let str2 = decimalString(string: str1)
-        let str3 = NSMutableAttributedString.getPriceAttributePriceTextDouble(priceText: "1234.11223", textFont: UIFont.systemFont(ofSize: 14), moneyFont: UIFont.systemFont(ofSize: 10), textColor: UIColor.red, moneyColor: UIColor.black)
-        print(str3)
-        self.label?.attributedText = str3
+        let str2 = decimalString(string: "\(Myview.self)")
+    
         print(str2)
+        
+//        setUpUI()
     }
 
-
-    
     
 }
 

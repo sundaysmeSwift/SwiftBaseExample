@@ -12,10 +12,10 @@ extension UIViewController {
     
     
     //MARK:- loadfromnib
-    class func loadFromNibNamed(nibNamed: String, bundle : Bundle? = nil) -> UIView? {
+    class func loadFromNibNamed(nibNamed: String, bundle : Bundle? = nil) -> UIViewController? {
         return UINib(
             nibName: nibNamed,
             bundle: bundle
-            ).instantiate(withOwner: nil, options: nil)[0] as? UIView
+            ).instantiate(withOwner: nil, options: nil)[0] as? UIViewController
     }
 }

@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A02EE0982327C4500074C733 /* SQBaseTableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02EE0972327C4500074C733 /* SQBaseTableViewVC.swift */; };
 		A06C4B0623213694009FB0B2 /* UIColor+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C4B0123213693009FB0B2 /* UIColor+SQExtension.swift */; };
 		A06C4B0723213694009FB0B2 /* UILabel+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C4B0223213693009FB0B2 /* UILabel+SQExtension.swift */; };
 		A06C4B0823213694009FB0B2 /* UIView+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C4B0323213694009FB0B2 /* UIView+SQExtension.swift */; };
 		A06C4B0923213694009FB0B2 /* UIButton+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C4B0423213694009FB0B2 /* UIButton+SQExtension.swift */; };
+		A097E60523274C7B006FBC7F /* Myview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A097E60423274C7B006FBC7F /* Myview.swift */; };
 		A0D1213B23225BBF001F266E /* NSObject+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D1213A23225BBF001F266E /* NSObject+SQExtension.swift */; };
 		A0D1213D2322659E001F266E /* String+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D1213C2322659E001F266E /* String+SQExtension.swift */; };
 		A0D1213F2322730C001F266E /* UIViewController+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D1213E2322730C001F266E /* UIViewController+SQExtension.swift */; };
@@ -44,10 +46,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A02EE0972327C4500074C733 /* SQBaseTableViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQBaseTableViewVC.swift; sourceTree = "<group>"; };
 		A06C4B0123213693009FB0B2 /* UIColor+SQExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+SQExtension.swift"; sourceTree = "<group>"; };
 		A06C4B0223213693009FB0B2 /* UILabel+SQExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+SQExtension.swift"; sourceTree = "<group>"; };
 		A06C4B0323213694009FB0B2 /* UIView+SQExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SQExtension.swift"; sourceTree = "<group>"; };
 		A06C4B0423213694009FB0B2 /* UIButton+SQExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+SQExtension.swift"; sourceTree = "<group>"; };
+		A097E60423274C7B006FBC7F /* Myview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Myview.swift; sourceTree = "<group>"; };
 		A0D1213A23225BBF001F266E /* NSObject+SQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+SQExtension.swift"; sourceTree = "<group>"; };
 		A0D1213C2322659E001F266E /* String+SQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+SQExtension.swift"; sourceTree = "<group>"; };
 		A0D1213E2322730C001F266E /* UIViewController+SQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SQExtension.swift"; sourceTree = "<group>"; };
@@ -97,6 +101,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A02EE0992327C7100074C733 /* CommonVC */ = {
+			isa = PBXGroup;
+			children = (
+				A02EE0972327C4500074C733 /* SQBaseTableViewVC.swift */,
+			);
+			path = CommonVC;
+			sourceTree = "<group>";
+		};
 		A0D1214A232279D8001F266E /* UtilTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,11 +167,13 @@
 		C32D2022229A2254006279C5 /* Bases */ = {
 			isa = PBXGroup;
 			children = (
+				A02EE0992327C7100074C733 /* CommonVC */,
 				C32D204D229AEAB2006279C5 /* MacroDefinition */,
 				C32D203E229A97C6006279C5 /* SQTabBarController */,
 				C32D203D229A97A9006279C5 /* SQRoundCenterController */,
 				C32D2023229A22CF006279C5 /* SQBaseNavigationController.swift */,
 				C32D2039229A7AFE006279C5 /* SQBaseViewController.swift */,
+				A097E60423274C7B006FBC7F /* Myview.swift */,
 			);
 			path = Bases;
 			sourceTree = "<group>";
@@ -363,6 +377,7 @@
 				C32D204F229AEAF0006279C5 /* GlobalConfigDefinition.swift in Sources */,
 				C32D204C229AA607006279C5 /* UIImage+SQExtension.swift in Sources */,
 				A0D121432322751B001F266E /* UICollectionView+Extension.swift in Sources */,
+				A097E60523274C7B006FBC7F /* Myview.swift in Sources */,
 				C32D2012229A2104006279C5 /* ViewController.swift in Sources */,
 				A0D1213B23225BBF001F266E /* NSObject+SQExtension.swift in Sources */,
 				A0D121412322749B001F266E /* UITableView+Extension.swift in Sources */,
@@ -374,6 +389,7 @@
 				C32D2010229A2104006279C5 /* AppDelegate.swift in Sources */,
 				C32D2048229A9C9D006279C5 /* SQTabBarController.swift in Sources */,
 				C32D203C229A9132006279C5 /* SQTabBar.swift in Sources */,
+				A02EE0982327C4500074C733 /* SQBaseTableViewVC.swift in Sources */,
 				A0D1214F23227ADB001F266E /* DecimalNumberTool.swift in Sources */,
 				C32D203A229A7AFE006279C5 /* SQBaseViewController.swift in Sources */,
 				A06C4B0723213694009FB0B2 /* UILabel+SQExtension.swift in Sources */,

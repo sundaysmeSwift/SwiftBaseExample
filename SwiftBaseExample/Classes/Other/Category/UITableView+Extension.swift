@@ -34,4 +34,24 @@ extension UITableView {
     func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>() -> T where T: RegisterCellOrNib {
         return dequeueReusableHeaderFooterView(withIdentifier: T.identifier) as! T
     }
+    
+    class func defaultTableView(style: UITableView.Style) -> UITableView {
+        let tableView = UITableView.init(frame: CGRect.zero, style: style)
+        self.commonConfig(tableView: tableView)
+        return tableView
+    }
+    class func defaultLineTableView(style: UITableView.Style) -> UITableView {
+        let tableView = UITableView.init(frame: CGRect.zero, style: style)
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.estimatedSectionHeaderHeight = 0
+        tableView.backgroundColor = UIColor.white
+        return tableView
+    }
+    class func commonConfig(tableView: UITableView) -> Void {
+        
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.estimatedSectionHeaderHeight = 0
+        tableView.backgroundColor = UIColor.white
+        tableView.separatorStyle = .none
+    }
 }

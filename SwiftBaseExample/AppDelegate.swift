@@ -21,7 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarOrientation = .portrait
         window = UIWindow.init()
         window?.frame = UIScreen.main.bounds
-        window?.rootViewController = ViewController.init()
+//        window?.rootViewController = ViewController(nibName: "ViewController", bundle: nil)
+        
+        
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = mainStoryBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        window?.rootViewController = vc
         window?.makeKeyAndVisible()
         
         return true

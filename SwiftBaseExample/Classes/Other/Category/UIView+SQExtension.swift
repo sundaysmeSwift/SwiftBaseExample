@@ -82,7 +82,7 @@ extension NibLoadable where Self : UIViewController {
 protocol RegisterCellOrNib {
 }
 
-extension RegisterCellOrNib {
+extension RegisterCellOrNib where Self: UIView {
     static var identifier: String {
         return "\(self)"
     }
