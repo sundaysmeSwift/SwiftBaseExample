@@ -40,11 +40,13 @@ extension UITableView {
         self.commonConfig(tableView: tableView)
         return tableView
     }
-    class func defaultLineTableView(style: UITableView.Style) -> UITableView {
+    class func defaultLineTableView(style: UITableView.Style, lineColor: UIColor = UIColor.init(hex: "#F5F5F5"), leftMarin: CGFloat = 10, rightMargin: CGFloat = 10) -> UITableView {
         let tableView = UITableView.init(frame: CGRect.zero, style: style)
         tableView.estimatedSectionFooterHeight = 0
         tableView.estimatedSectionHeaderHeight = 0
         tableView.backgroundColor = UIColor.white
+        tableView.separatorColor = lineColor
+        tableView.separatorInset = UIEdgeInsets.init(top: 0, left: leftMarin, bottom: 0, right: rightMargin)
         return tableView
     }
     class func commonConfig(tableView: UITableView) -> Void {
