@@ -56,4 +56,14 @@ extension UITableView {
         tableView.backgroundColor = UIColor.white
         tableView.separatorStyle = .none
     }
+    
+    class func commonConfigLine(tableView: UITableView,lineColor: UIColor = UIColor.init(hex: "#F5F5F5"), leftMarin: CGFloat = 10, rightMargin: CGFloat = 10) -> Void {
+        
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.estimatedSectionHeaderHeight = 0
+        tableView.backgroundColor = UIColor.white
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = lineColor
+        tableView.separatorInset = UIEdgeInsets.init(top: 0, left: leftMarin, bottom: 0, right: rightMargin)
+    }
 }
