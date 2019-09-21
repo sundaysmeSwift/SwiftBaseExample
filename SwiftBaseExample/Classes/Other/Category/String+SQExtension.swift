@@ -13,6 +13,9 @@ extension String {
     
     subscript (range: Range<Int>) -> String {
         get {
+            if range.lowerBound < 0 || range.upperBound > self.count {
+                return ""
+            }
             let startIndex = self.index(self.startIndex, offsetBy: range.lowerBound)
             let endIndex = self.index(self.startIndex, offsetBy: range.upperBound)
             return String(self[startIndex..<endIndex])
@@ -25,8 +28,133 @@ extension String {
             self.replaceSubrange(strRange, with: newValue)
         }
     }
+    subscript(r: ClosedRange<Int>) -> String {
+        get {
+            let start = index(startIndex, offsetBy: r.lowerBound)
+            let end = index(startIndex, offsetBy: r.upperBound)
+            return self[start...end]
+        }
+        set {
+            let startIndex = self.index(self.startIndex, offsetBy: range.lowerBound)
+            let endIndex = self.index(self.startIndex, offsetBy: range.upperBound)
+            let strRange = startIndex...endIndex
+            self.replaceSubrange(strRange, with: newValue)
+        }
+    }
     
+    //MARK:-返回string的长度
+    var length:Int{
+        get {
+            return self.characters.count;
+        }
+    }
+    //MARK:-截取字符串从开始到 index
+    func substring(to index: Int) -> String {
+        guard let end_Index = validEndIndex(original: index) else {
+            return self;
+        }
+        
+        return String(self[startIndex..<end_Index]);
+    }
+    //MARK:-截取字符串从index到结束
+    func substring(from index: Int) -> String {
+        guard let start_index = validStartIndex(original: index)  else {
+            return self
+        }
+        return String(self[start_index..<endIndex])
+    }
+    //MARK:-切割字符串(区间范围 前闭后开)
+    func sliceString(_ range:CountableRange<Int>)->String{
+        
+        guard
+            let startIndex = validStartIndex(original: range.lowerBound),
+            let endIndex   = validEndIndex(original: range.upperBound),
+            startIndex <= endIndex
+            else {
+                return ""
+        }
+        
+        return String(self[startIndex..<endIndex])
+    }
+    //MARK:-切割字符串(区间范围 前闭后闭)
+    func sliceString(_ range:CountableClosedRange<Int>)->String{
+        
+        guard
+            let start_Index = validStartIndex(original: range.lowerBound),
+            let end_Index   = validEndIndex(original: range.upperBound),
+            startIndex <= endIndex
+            else {
+                return ""
+        }
+        if(endIndex.encodedOffset <= end_Index.encodedOffset){
+            return String(self[start_Index..<endIndex])
+        }
+        return String(self[start_Index...end_Index])
+        
+    }
+    //MARK:-校验字符串位置 是否合理，并返回String.Index
+    private func validIndex(original: Int) -> String.Index {
+        
+        switch original {
+        case ...startIndex.encodedOffset : return startIndex
+        case endIndex.encodedOffset...   : return endIndex
+        default                          : return index(startIndex, offsetBy: original)
+        }
+    }
+    //MARK:-校验是否是合法的起始位置
+    private func validStartIndex(original: Int) -> String.Index? {
+        guard original <= endIndex.encodedOffset else { return nil }
+        return validIndex(original:original)
+    }
+    //MARK:-校验是否是合法的结束位置
+    private func validEndIndex(original: Int) -> String.Index? {
+        guard original >= startIndex.encodedOffset else { return nil }
+        return validIndex(original:original)
+    }
+    func toInt() -> Int? {
+        return Int(self)
+    }
     
+    func toFloat() -> Float? {
+        return Float(self)
+    }
+    
+    func toDouble() -> Double? {
+        return Double(self)
+    }
+    
+    //MARK:- 去除字符串两端的空白字符
+    func trim() -> String {
+        return self.trimmingCharacters(in: CharacterSet.whitespaces)
+    }
+    
+    func subString(to: Int) -> String {
+        var to = to
+        if to > self.count {
+            to = self.count
+        }
+        return String(self.prefix(to))
+    }
+    
+    func subString(from: Int) -> String {
+        if from >= self.count {
+            return ""
+        }
+        let startIndex = self.index(self.startIndex, offsetBy: from)
+        let endIndex = self.endIndex
+        return String(self[startIndex..<endIndex])
+    }
+    
+    func subString(start: Int, end: Int) -> String {
+        if start < end {
+            let startIndex = self.index(self.startIndex, offsetBy: start)
+            let endIndex = self.index(self.startIndex, offsetBy: end)
+            
+            return String(self[startIndex..<endIndex])
+        }
+        return ""
+    }
+
     
     /// 计算文本的高度
     func getTextHeight(width: CGFloat) -> CGFloat {
@@ -34,7 +162,27 @@ extension String {
         return (self.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [.font: UIFont.systemFont(ofSize: 16)], context: nil).size.height)
     }
     
-    
+    static func getTextHeightFixWidth(text:String,fontSize:CGFloat,width:CGFloat,lineSpace : CGFloat)->CGFloat{
+        
+        let font = UIFont.systemFont(ofSize: fontSize)
+        
+        //        let size = CGSizeMake(width,CGFloat.max)
+        
+        let size = CGSize(width: width, height: CGFloat(MAXFLOAT))
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        
+        paragraphStyle.lineSpacing = lineSpace
+        
+        paragraphStyle.lineBreakMode = .byWordWrapping;
+        
+        let attributes = [.font:font, NSAttributedString.Key.paragraphStyle :paragraphStyle.copy()]
+        
+        let rect = text.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: attributes, context:nil)
+        
+        return rect.size.height
+        
+    }//funcstringHeightWith
     //range转换为NSRange
     //扩展的是String类，不可改为NSRange或者Range的扩展，因为samePosition，utf16是String里的
     
@@ -108,4 +256,134 @@ extension String {
         }
         return r3.stringValue
     }
+    
+    //MARK:- price  打印效果 1位小数
+    static func getStringPrice(price:String,priceF:Float)->String{
+        var hander:NSDecimalNumberHandler?
+        if priceF >= 10000000{
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 0, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 1000000 && priceF < 10000000{
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 1, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 100000 && priceF < 1000000{
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 2, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 10000 && priceF < 100000 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 3, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 1000 && priceF < 10000 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 4, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 100 && priceF < 1000 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 5, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 10 && priceF < 100 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 6, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else{
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 7, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }
+        
+        let decimalprice = NSDecimalNumber.init(string: price)
+        let decimalprice1 = NSDecimalNumber.init(string: "0")
+        let r3 = decimalprice.adding(decimalprice1, withBehavior: hander)
+        return r3.stringValue
+    }
+    
+    
+    func md5() -> String {
+        let str = self.cString(using: String.Encoding.utf8)
+        let strLen = CUnsignedInt(self.lengthOfBytes(using: String.Encoding.utf8))
+        let digestLen = Int(CC_MD5_DIGEST_LENGTH)
+        let result = UnsafeMutablePointer<UInt8>.allocate(capacity: 16)
+        CC_MD5(str!, strLen, result)
+        let hash = NSMutableString()
+        for i in 0 ..< digestLen {
+            hash.appendFormat("%02x", result[i])
+        }
+        free(result)
+        return String(format: hash as String)
+    }
+    
+    func cancleScientific()-> String {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.numberStyle = .decimal
+        let number = formatter.number(from: self)
+        if let n = number {
+            //let lengthOfDecimal = self.split(separator: ".")[1].count
+            if self.contains("E") || self.contains("e") || self.count > 15 {
+                return String(format:"%.8f", n.doubleValue)
+            }else {
+                if number!.doubleValue <= Double(0.0) {
+                    return "0"
+                }
+                return self
+            }
+        }else{
+            return "0"
+        }
+    }
+    
+    //获取小数点位数
+    func countOfPresicion()-> Int {
+        let array = self.split(separator: ".")
+        if array.count == 2 {
+            let presicion = array[1]
+            return presicion.count
+        }
+        return 0
+    }
+    
+    func splitToIntArray(seperator: Character)-> [Int] {
+        return self.split(separator: seperator).map({ (str) -> Int in
+            return Int(str) ?? -1
+        })
+    }
+    
+    func getCoinAndQutoeCoinFromSymbol()->(String, String) {
+        let coinPairArray = self.split(separator: "_")
+        let coinName = String(coinPairArray[0])
+        let coinQuote = String(coinPairArray[1])
+        return (coinName, coinQuote)
+    }
+    
+    func toLotteryNumberString()-> String {
+        if let number = Int(self) {
+            if number < 10 {
+                return "0" + self
+            }else {
+                return self
+            }
+        }else {
+            return "-1"
+        }
+    }
+    //    func stringValue()-> String {
+    //        if self == nil {
+    //            return ""
+    //        }else {
+    //            return self
+    //        }
+    //    }
+    
+    
+    func getHeightFixedWidth(fontSize:CGFloat,width:CGFloat,lineSpace : CGFloat)->CGFloat{
+        
+        let font = UIFont.systemFont(ofSize: fontSize)
+        
+        //        let size = CGSizeMake(width,CGFloat.max)
+        
+        let size = CGSize(width: width, height: CGFloat(MAXFLOAT))
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        
+        paragraphStyle.lineSpacing = lineSpace
+        
+        paragraphStyle.lineBreakMode = .byWordWrapping;
+        
+        let attributes = [.font:font, NSAttributedString.Key.paragraphStyle :paragraphStyle.copy()]
+        
+        let text = self as NSString
+        
+        let rect = text.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: attributes, context:nil)
+        
+        return rect.size.height
+        
+    }//funcstringHeightWith
+    
 }

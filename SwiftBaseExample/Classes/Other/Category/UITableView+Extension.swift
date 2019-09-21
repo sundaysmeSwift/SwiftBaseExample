@@ -38,6 +38,7 @@ extension UITableView {
     class func defaultTableView(style: UITableView.Style) -> UITableView {
         let tableView = UITableView.init(frame: CGRect.zero, style: style)
         self.commonConfig(tableView: tableView)
+        tableView.tableFooterView = UIView.init()
         return tableView
     }
     class func defaultLineTableView(style: UITableView.Style, lineColor: UIColor = UIColor.init(hex: "#F5F5F5"), leftMarin: CGFloat = 10, rightMargin: CGFloat = 10) -> UITableView {
@@ -47,6 +48,8 @@ extension UITableView {
         tableView.backgroundColor = UIColor.white
         tableView.separatorColor = lineColor
         tableView.separatorInset = UIEdgeInsets.init(top: 0, left: leftMarin, bottom: 0, right: rightMargin)
+        tableView.layoutMargins = UIEdgeInsets.init(top: 0, left: leftMarin, bottom: 0, right: rightMargin)
+        tableView.tableFooterView = UIView.init()
         return tableView
     }
     class func commonConfig(tableView: UITableView) -> Void {
@@ -65,5 +68,6 @@ extension UITableView {
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = lineColor
         tableView.separatorInset = UIEdgeInsets.init(top: 0, left: leftMarin, bottom: 0, right: rightMargin)
+        tableView.layoutMargins = UIEdgeInsets.init(top: 0, left: leftMarin, bottom: 0, right: rightMargin)
     }
 }

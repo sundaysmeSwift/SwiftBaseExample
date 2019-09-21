@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A014371A232A4B8600D7FC3C /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0143719232A4B8600D7FC3C /* ConstraintArrayDSL.swift */; };
 		A0171EA023289BEA00A66924 /* UtilMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0171E9F23289BEA00A66924 /* UtilMacro.swift */; };
+		A02D29A023363E1100CDBB9E /* InterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D299F23363E1100CDBB9E /* InterUtil.swift */; };
 		A02EE0982327C4500074C733 /* SQBaseTableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02EE0972327C4500074C733 /* SQBaseTableViewVC.swift */; };
 		A03E971C232F30F000225AE6 /* UIAlertController+SQHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03E971B232F30F000225AE6 /* UIAlertController+SQHelper.swift */; };
 		A06C4B0623213694009FB0B2 /* UIColor+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C4B0123213693009FB0B2 /* UIColor+SQExtension.swift */; };
@@ -21,7 +22,6 @@
 		A0D1213F2322730C001F266E /* UIViewController+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D1213E2322730C001F266E /* UIViewController+SQExtension.swift */; };
 		A0D121412322749B001F266E /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D121402322749B001F266E /* UITableView+Extension.swift */; };
 		A0D121432322751B001F266E /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D121422322751A001F266E /* UICollectionView+Extension.swift */; };
-		A0D12145232275B1001F266E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D12144232275B1001F266E /* String+Extension.swift */; };
 		A0D12147232275C5001F266E /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D12146232275C5001F266E /* Date+Extension.swift */; };
 		A0D1214923227972001F266E /* NSMutableAttributedString+SQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D1214823227972001F266E /* NSMutableAttributedString+SQ.swift */; };
 		A0D1214D23227A99001F266E /* UtilTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D1214C23227A99001F266E /* UtilTool.swift */; };
@@ -51,6 +51,7 @@
 /* Begin PBXFileReference section */
 		A0143719232A4B8600D7FC3C /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintArrayDSL.swift; sourceTree = "<group>"; };
 		A0171E9F23289BEA00A66924 /* UtilMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilMacro.swift; sourceTree = "<group>"; };
+		A02D299F23363E1100CDBB9E /* InterUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterUtil.swift; sourceTree = "<group>"; };
 		A02EE0972327C4500074C733 /* SQBaseTableViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQBaseTableViewVC.swift; sourceTree = "<group>"; };
 		A03E971B232F30F000225AE6 /* UIAlertController+SQHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+SQHelper.swift"; sourceTree = "<group>"; };
 		A06C4B0123213693009FB0B2 /* UIColor+SQExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+SQExtension.swift"; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		A0D1213E2322730C001F266E /* UIViewController+SQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SQExtension.swift"; sourceTree = "<group>"; };
 		A0D121402322749B001F266E /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		A0D121422322751A001F266E /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
-		A0D12144232275B1001F266E /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A0D12146232275C5001F266E /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		A0D1214823227972001F266E /* NSMutableAttributedString+SQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+SQ.swift"; sourceTree = "<group>"; };
 		A0D1214C23227A99001F266E /* UtilTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilTool.swift; sourceTree = "<group>"; };
@@ -272,7 +272,6 @@
 				A03E971B232F30F000225AE6 /* UIAlertController+SQHelper.swift */,
 				A0143719232A4B8600D7FC3C /* ConstraintArrayDSL.swift */,
 				A0D12146232275C5001F266E /* Date+Extension.swift */,
-				A0D12144232275B1001F266E /* String+Extension.swift */,
 				A0D121422322751A001F266E /* UICollectionView+Extension.swift */,
 				A0D121402322749B001F266E /* UITableView+Extension.swift */,
 				A06C4B0423213694009FB0B2 /* UIButton+SQExtension.swift */,
@@ -286,6 +285,7 @@
 				A0D1213E2322730C001F266E /* UIViewController+SQExtension.swift */,
 				A0D1214823227972001F266E /* NSMutableAttributedString+SQ.swift */,
 				A0D1215023229275001F266E /* Range+SQ.swift */,
+				A02D299F23363E1100CDBB9E /* InterUtil.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -396,7 +396,7 @@
 				A06C4B0823213694009FB0B2 /* UIView+SQExtension.swift in Sources */,
 				C32D2040229A9AF6006279C5 /* HomeController.swift in Sources */,
 				C32D2044229A9B1B006279C5 /* ThreeController.swift in Sources */,
-				A0D12145232275B1001F266E /* String+Extension.swift in Sources */,
+				A02D29A023363E1100CDBB9E /* InterUtil.swift in Sources */,
 				A0D1213D2322659E001F266E /* String+SQExtension.swift in Sources */,
 				C32D2010229A2104006279C5 /* AppDelegate.swift in Sources */,
 				C32D2048229A9C9D006279C5 /* SQTabBarController.swift in Sources */,

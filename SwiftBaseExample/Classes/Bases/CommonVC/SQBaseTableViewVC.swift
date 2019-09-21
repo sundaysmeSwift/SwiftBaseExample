@@ -112,7 +112,8 @@ extension SQBaseTableViewVC: UITableViewDelegate, UITableViewDataSource{
 //        cell?.separatorInset = UIEdgeInsets.init(top: 0, left: 16, bottom: 0, right: 16)
 //        cell?.layoutMargins = UIEdgeInsets.init(top: 0, left: 16, bottom: 0, right: 16)
         
-        
+        //        cell.setNeedsUpdateConstraints()
+        //        cell.updateConstraintsIfNeeded()
         return cell!;
     }
     

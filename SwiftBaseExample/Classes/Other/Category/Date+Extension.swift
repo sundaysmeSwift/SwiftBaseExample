@@ -10,6 +10,26 @@ import Foundation
 
 extension Date {
     
+    class func timeStampToString(dateFormat:String = "yyyy-MM-dd HH:mm:ss")->String {
+        
+        let string = NSString(string: self)
+        
+        let timeSta:TimeInterval = string.doubleValue
+        let dfmatter = DateFormatter()
+        dfmatter.dateFormat = dateFormat
+        
+        let date = NSDate(timeIntervalSince1970: timeSta/1000)
+        
+        return dfmatter.string(from: date as Date)
+    }
+    
+    func formatString(format: String)-> String {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = format   //"yyyyMMddHHmmss"
+        let strNowTime = timeFormatter.string(from: self) as String
+        return strNowTime
+    }
+    
     /// 判断某个时间是否为今年
     func isThisYear() -> Bool {
         let calender = Calendar.current
