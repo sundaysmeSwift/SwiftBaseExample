@@ -35,8 +35,8 @@ extension String {
             return self[start...end]
         }
         set {
-            let startIndex = self.index(self.startIndex, offsetBy: range.lowerBound)
-            let endIndex = self.index(self.startIndex, offsetBy: range.upperBound)
+            let startIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
+            let endIndex = self.index(self.startIndex, offsetBy: r.upperBound)
             let strRange = startIndex...endIndex
             self.replaceSubrange(strRange, with: newValue)
         }
@@ -156,33 +156,6 @@ extension String {
     }
 
     
-    /// 计算文本的高度
-    func getTextHeight(width: CGFloat) -> CGFloat {
-        let size = CGSize(width: width, height: CGFloat(MAXFLOAT))
-        return (self.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [.font: UIFont.systemFont(ofSize: 16)], context: nil).size.height)
-    }
-    
-    static func getTextHeightFixWidth(text:String,fontSize:CGFloat,width:CGFloat,lineSpace : CGFloat)->CGFloat{
-        
-        let font = UIFont.systemFont(ofSize: fontSize)
-        
-        //        let size = CGSizeMake(width,CGFloat.max)
-        
-        let size = CGSize(width: width, height: CGFloat(MAXFLOAT))
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        
-        paragraphStyle.lineSpacing = lineSpace
-        
-        paragraphStyle.lineBreakMode = .byWordWrapping;
-        
-        let attributes = [.font:font, NSAttributedString.Key.paragraphStyle :paragraphStyle.copy()]
-        
-        let rect = text.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: attributes, context:nil)
-        
-        return rect.size.height
-        
-    }//funcstringHeightWith
     //range转换为NSRange
     //扩展的是String类，不可改为NSRange或者Range的扩展，因为samePosition，utf16是String里的
     
@@ -379,6 +352,79 @@ extension String {
         let attributes = [.font:font, NSAttributedString.Key.paragraphStyle :paragraphStyle.copy()]
         
         let text = self as NSString
+        
+        let rect = text.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: attributes, context:nil)
+        
+        return rect.size.height
+        
+    }//funcstringHeightWith
+    
+    
+    func boundingRect(with constrainedSize: CGSize, font: UIFont, lineSpacing: CGFloat? = nil) -> CGSize {
+        let attritube = NSMutableAttributedString(string: self)
+        let range = NSRange(location: 0, length: attritube.length)
+        attritube.addAttributes([NSAttributedString.Key.font: font], range: range)
+        if lineSpacing != nil {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = lineSpacing!
+            attritube.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: range)
+        }
+        
+        let rect = attritube.boundingRect(with: constrainedSize, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
+        var size = rect.size
+        
+        if let currentLineSpacing = lineSpacing {
+            // 文本的高度减去字体高度小于等于行间距，判断为当前只有1行
+            let spacing = size.height - font.lineHeight
+            if spacing <= currentLineSpacing && spacing > 0 {
+                size = CGSize(width: size.width, height: font.lineHeight)
+            }
+        }
+        
+        return size
+    }
+    
+    func boundingRect(with constrainedSize: CGSize, font: UIFont, lineSpacing: CGFloat? = nil, lines: Int) -> CGSize {
+        if lines < 0 {
+            return .zero
+        }
+        
+        let size = boundingRect(with: constrainedSize, font: font, lineSpacing: lineSpacing)
+        if lines == 0 {
+            return size
+        }
+
+        let currentLineSpacing = (lineSpacing == nil) ? (font.lineHeight - font.pointSize) : lineSpacing!
+        let maximumHeight = font.lineHeight*CGFloat(lines) + currentLineSpacing*CGFloat(lines - 1)
+        if size.height >= maximumHeight {
+            return CGSize(width: size.width, height: maximumHeight)
+        }
+        
+        return size
+    }
+    
+    
+    /// 计算文本的高度
+    func getTextHeight(width: CGFloat) -> CGFloat {
+        let size = CGSize(width: width, height: CGFloat(MAXFLOAT))
+        return (self.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [.font: UIFont.systemFont(ofSize: 16)], context: nil).size.height)
+    }
+    
+    static func getTextHeightFixWidth(text:String,fontSize:CGFloat,width:CGFloat,lineSpace : CGFloat)->CGFloat{
+        
+        let font = UIFont.systemFont(ofSize: fontSize)
+        
+        //        let size = CGSizeMake(width,CGFloat.max)
+        
+        let size = CGSize(width: width, height: CGFloat(MAXFLOAT))
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        
+        paragraphStyle.lineSpacing = lineSpace
+        
+        paragraphStyle.lineBreakMode = .byWordWrapping;
+        
+        let attributes = [.font:font, NSAttributedString.Key.paragraphStyle :paragraphStyle.copy()]
         
         let rect = text.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: attributes, context:nil)
         

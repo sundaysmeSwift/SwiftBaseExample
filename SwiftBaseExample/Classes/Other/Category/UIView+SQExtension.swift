@@ -53,7 +53,53 @@ extension UIView {
             ).instantiate(withOwner: nil, options: nil)[0] as? UIView
     }
 
+    func addSeparatorBottomLine(lMargin:Float = 14,rMargin:Float = 14,hegiht:Float = 0.5,lineColor:UIColor = ThemeColor.sharedInstance.getLineViewColor())-> UIView {
+
+        let lineView = UIView(frame: CGRect.init())
+        lineView.backgroundColor = lineColor
+        self.addSubview(lineView)
+        lineView.snp_makeConstraints { (make) in
+            make.left.equalToSuperview().offset(lMargin)
+            make.right.equalToSuperview().offset(-rMargin)
+            make.height.equalTo(0.5)
+            make.bottom.equalTo(0)
+        }
+        return lineView
+    }
+    
+    func addSeparatorTopLine(lMargin:Float = 14,rMargin:Float = 14,hegiht:Float = 0.5,slineColor:UIColor = lineColor,bMargin:Float = 0)-> UIView {
+        
+        let lineView = UIView(frame: CGRect.init())
+        lineView.backgroundColor = slineColor
+        self.addSubview(lineView)
+        lineView.snp_makeConstraints { (make) in
+            make.left.equalToSuperview().offset(lMargin)
+            make.right.equalToSuperview().offset(-rMargin)
+            make.height.equalTo(0.5)
+            make.top.equalToSuperview().offset(bMargin)
+        }
+        return lineView
+    }
+
+    
+    func addSeparatorBottomLine(lMargin:Float = 14,rMargin:Float = 14,hegiht:Float = 0.5,slineColor:UIColor = lineColor,tMargin:Float = 0)-> UIView {
+
+        let lineView = UIView(frame: CGRect.init())
+        lineView.backgroundColor = slineColor
+        self.addSubview(lineView)
+        lineView.snp_makeConstraints { (make) in
+            make.left.equalToSuperview().offset(lMargin)
+            make.right.equalToSuperview().offset(-rMargin)
+            make.height.equalTo(0.5)
+            make.bottom.equalToSuperview().offset(-tMargin)
+        }
+        return lineView
+    }
+    
 }
+
+
+
 
 public protocol NibLoadable {
 }

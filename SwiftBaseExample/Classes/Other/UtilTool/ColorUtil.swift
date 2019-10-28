@@ -6,4 +6,8 @@
 //  Copyright © 2019 administrator. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+let lineColor = UIColor.init(hex: "f5f5f5")
+let bgColor = UIColor.init(hex: "")
+
