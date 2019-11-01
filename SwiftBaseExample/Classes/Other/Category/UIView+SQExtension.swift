@@ -67,7 +67,7 @@ extension UIView {
         return lineView
     }
     
-    func addSeparatorTopLine(lMargin:Float = 14,rMargin:Float = 14,hegiht:Float = 0.5,slineColor:UIColor = lineColor,bMargin:Float = 0)-> UIView {
+    func addSeparatorTopLine(lMargin:Float = 14,rMargin:Float = 14,hegiht:Float = 0.5,slineColor:UIColor = lineColor,sMargin:Float = 0)-> UIView {
         
         let lineView = UIView(frame: CGRect.init())
         lineView.backgroundColor = slineColor
@@ -76,7 +76,7 @@ extension UIView {
             make.left.equalToSuperview().offset(lMargin)
             make.right.equalToSuperview().offset(-rMargin)
             make.height.equalTo(0.5)
-            make.top.equalToSuperview().offset(bMargin)
+            make.top.equalToSuperview().offset(sMargin)
         }
         return lineView
     }

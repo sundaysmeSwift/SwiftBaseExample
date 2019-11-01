@@ -111,17 +111,7 @@ extension String {
         guard original >= startIndex.encodedOffset else { return nil }
         return validIndex(original:original)
     }
-    func toInt() -> Int? {
-        return Int(self)
-    }
-    
-    func toFloat() -> Float? {
-        return Float(self)
-    }
-    
-    func toDouble() -> Double? {
-        return Double(self)
-    }
+
     
     //MARK:- 去除字符串两端的空白字符
     func trim() -> String {
@@ -155,7 +145,7 @@ extension String {
         return ""
     }
 
-    
+    //MARK:- NSRange == Range
     //range转换为NSRange
     //扩展的是String类，不可改为NSRange或者Range的扩展，因为samePosition，utf16是String里的
     
@@ -178,8 +168,17 @@ extension String {
             else { return nil }
         return from ..< to
     }
+    //MARK:- PriceFormatter
     
-    func formatPrice(price:String)->String{
+    func getNSNumber(roundingMode:RoundingMode = .down, scale:Int = 2, raiseraiseOnExactness:Bool = false,raiseOnOverflow:Bool = false, raiseOnUnderflow:Bool = false, raiseOnDivideByZero:Bool = true)->String{
+        let num = NSDecimalNumber(string: self)
+        let num2 = NSDecimalNumber(string: "0")
+        let haviors = NSDecimalNumberHandler.init(roundingMode: roundingMode, scale: scale, raiseOnExactness: raiseOnExactness, raiseOnOverflow: raiseOnOverflow, raiseOnUnderflow: raiseOnUnderflow, raiseOnDivideByZero: raiseOnDivideByZero)
+        let num3 = num.adding(num2, withBehavior: haviors)
+        return num3.stringValue
+    }
+
+    class formatPrice(price:String)->String{
         if price.contains(":") {
             return price
         }
@@ -205,7 +204,7 @@ extension String {
     }
     
     
-    func formatPriceF(priceF: CGFloat)->String{
+    class func formatPriceF(priceF: CGFloat)->String{
         
         var hander:NSDecimalNumberHandler?
         
@@ -432,4 +431,30 @@ extension String {
         
     }//funcstringHeightWith
     
+    
+    //MARK:- DegitailTransfer
+    func doubleValue(decimalDigits:NSInteger) -> String{
+        let formater = "%."+"\(decimalDigits)"+"lf"
+        return String(format: formater, (self as NSString).doubleValue)
+    }
+    func floatValue(decimalDigits:NSInteger) -> String{
+        let formater = "%."+"\(decimalDigits)"+"lf"
+        return String(format: formater, (self as NSString).floatValue)
+    }
+    
+    func integerValue() -> NSInteger{
+        return (self as NSString).integerValue
+    }
+    
+    func toInt() -> Int? {
+        return Int(self)
+    }
+    
+    func toFloat() -> Float? {
+        return Float(self)
+    }
+    
+    func toDouble() -> Double? {
+        return Double(self)
+    }
 }

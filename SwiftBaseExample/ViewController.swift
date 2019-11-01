@@ -49,13 +49,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let str2 = decimalString(string: "\(Myview.self)")
-    
-        print(str2)
         
-//        setUpUI()
     }
 
+    
+    func layArrView() {
+        let arrStr = ["在发现模块添加一个聊天模块，并在左上角显示内测版","只有白名单用户点击能进入聊天模块，其他客户点击弹出","搜索功能去掉。","用户建立群，只有该用户可以拉人入群，其他群员不能拉人进来","人入群，其他群员不能拉人进来"]
+        let arrVs = arrStr.compactMap { (item) -> UILabel in
+            let label = UILabel.init()
+            label.numberOfLines = 0
+            label.text = item
+            
+            label.backgroundColor = UIColor.green
+            return label
+        }
+        for (i,sview) in arrVs.enumerated(){
+            self.view.addSubview(sview)
+        }
+//        arrVs.snp.distributeDetermineWrapViews(verticalSpacing: 10, horizontalSpacing: 20, maxWidth: self.view.frame.width)
+        arrVs.snp.distributeDetermineWrapViews(verticalSpacing: 10, horizontalSpacing: 20, maxWidth: self.view.frame.size.width, edgeInset: UIEdgeInsets(top: 50, left: 20, bottom: 20, right: 20), topConstrainView: nil, maskBourds: true, cornerRadio: 15)
+    }
     
 }
 

@@ -10,11 +10,6 @@ import UIKit
 
 extension UITextField{
 
-    
-    
-    
-    
-    
     //MARK:-设置暂位文字的颜色
     var placeholderColor:UIColor {
 
@@ -56,6 +51,3 @@ extension UITextField{
 
 
 }
-————————————————
-版权声明：本文为CSDN博主「Micah_A」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/lvchenqiang_/article/details/78539953
