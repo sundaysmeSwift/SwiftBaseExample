@@ -12,6 +12,8 @@
 		A02D29A023363E1100CDBB9E /* InterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D299F23363E1100CDBB9E /* InterUtil.swift */; };
 		A02EE0982327C4500074C733 /* SQBaseTableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02EE0972327C4500074C733 /* SQBaseTableViewVC.swift */; };
 		A032A523236C39260032CA7B /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A032A522236C39260032CA7B /* ConstraintArrayDSL.swift */; };
+		A032A525236C3E530032CA7B /* UserNotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A032A524236C3E530032CA7B /* UserNotificationUtil.swift */; };
+		A032A529236C3E8C0032CA7B /* EnumUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A032A528236C3E8C0032CA7B /* EnumUtils.swift */; };
 		A03E971C232F30F000225AE6 /* UIAlertController+SQHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03E971B232F30F000225AE6 /* UIAlertController+SQHelper.swift */; };
 		A06C4B0623213694009FB0B2 /* UIColor+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C4B0123213693009FB0B2 /* UIColor+SQExtension.swift */; };
 		A06C4B0723213694009FB0B2 /* UILabel+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C4B0223213693009FB0B2 /* UILabel+SQExtension.swift */; };
@@ -61,6 +63,8 @@
 		A02D299F23363E1100CDBB9E /* InterUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterUtil.swift; sourceTree = "<group>"; };
 		A02EE0972327C4500074C733 /* SQBaseTableViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQBaseTableViewVC.swift; sourceTree = "<group>"; };
 		A032A522236C39260032CA7B /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintArrayDSL.swift; path = "../../../../../SwiftExample-1/SwiftExample/Extension/ConstraintArrayDSL.swift"; sourceTree = "<group>"; };
+		A032A524236C3E530032CA7B /* UserNotificationUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationUtil.swift; sourceTree = "<group>"; };
+		A032A528236C3E8C0032CA7B /* EnumUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumUtils.swift; sourceTree = "<group>"; };
 		A03E971B232F30F000225AE6 /* UIAlertController+SQHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+SQHelper.swift"; sourceTree = "<group>"; };
 		A06C4B0123213693009FB0B2 /* UIColor+SQExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+SQExtension.swift"; sourceTree = "<group>"; };
 		A06C4B0223213693009FB0B2 /* UILabel+SQExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+SQExtension.swift"; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 		A0D1214A232279D8001F266E /* UtilTool */ = {
 			isa = PBXGroup;
 			children = (
+				A032A524236C3E530032CA7B /* UserNotificationUtil.swift */,
+				A032A528236C3E8C0032CA7B /* EnumUtils.swift */,
 				A0D1214B232279FC001F266E /* DecimalNumberTool */,
 				A0D1214C23227A99001F266E /* UtilTool.swift */,
 				A0171E9F23289BEA00A66924 /* UtilMacro.swift */,
@@ -456,6 +462,7 @@
 				C32D2046229A9B33006279C5 /* MeController.swift in Sources */,
 				A0171EA023289BEA00A66924 /* UtilMacro.swift in Sources */,
 				A06C4B0923213694009FB0B2 /* UIButton+SQExtension.swift in Sources */,
+				A032A525236C3E530032CA7B /* UserNotificationUtil.swift in Sources */,
 				A032A523236C39260032CA7B /* ConstraintArrayDSL.swift in Sources */,
 				A06C4B0623213694009FB0B2 /* UIColor+SQExtension.swift in Sources */,
 				C32D2042229A9B09006279C5 /* SecondController.swift in Sources */,
@@ -485,6 +492,7 @@
 				C32D203A229A7AFE006279C5 /* SQBaseViewController.swift in Sources */,
 				A06C4B0723213694009FB0B2 /* UILabel+SQExtension.swift in Sources */,
 				A0C08CE4234098E300FC1D0E /* ColorUtil.swift in Sources */,
+				A032A529236C3E8C0032CA7B /* EnumUtils.swift in Sources */,
 				A0D1213F2322730C001F266E /* UIViewController+SQExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
