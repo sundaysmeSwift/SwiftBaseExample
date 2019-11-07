@@ -96,6 +96,19 @@ extension UIView {
         return lineView
     }
     
+    //MARK:- 圆角
+    func addCorner(corner:CGFloat = 3) {
+        self.layer.cornerRadius = corner
+        self.layer.masksToBounds = true
+    }
+    
+    func addCornerBorder(corner:CGFloat = 3,borderWith:CGFloat = 1, borderColor:UIColor = UIColor.clear) {
+        self.layer.cornerRadius = corner
+        self.layer.masksToBounds = true
+        self.layer.borderWidth = borderWith
+        self.layer.borderColor = borderColor.cgColor
+    }
+    
 }
 
 

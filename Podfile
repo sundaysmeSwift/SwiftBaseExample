@@ -48,8 +48,9 @@ target 'SwiftBaseExample' do
     #
     #
 #    pod 'Starscream', '3.0.6'
-
-
+###圆角
+  #pod 'ZYCornerRadius'
+  #pod 'HYBImageCliped'
 
 #        swift4 = ['LTScrollView', 'SlideMenuController']
 
