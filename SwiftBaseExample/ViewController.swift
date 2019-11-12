@@ -52,6 +52,49 @@ class ViewController: UIViewController {
         self.view.addObserver()
     }
 
+    func testSaveDicPlist(){
+        let  myArray = [[["title":"基础必备","subTitle":"掌握基本常识","imgName":"h_nh_basic_ness"],["title":"交易必备","subTitle":"交易变得随心所欲","imgName":"h_nh_basic_trade"],["title":"产品介绍","subTitle":"了解更多知识","imgName":"h_nd_product_introduction"]],
+                    [["question":"如何注册账号？" , "answer":"APP下载链接: https://www.quantbroker.info/ 复制网址浏览器打开—首页下拉到最后扫码下载"],
+                    ["question":"如何实名认证？" , "answer":"登录APP-【我的】-【实名认证】-【选择自身对应的身份点击进入-填写姓名、身份证号、证件有效期（注：填写的信息一定要和身份证信息一致）-【提交】"],
+                    ["question":"怎样场外交易？" , "answer":"登录账号-【发现】-【场外交易】-【同意第三方确认】-找到我要买-输入金额（人民币）-【买入】-【确认买入】-选择付款方式—确认金额—扫码转账/银行卡转账—转账成功后返回APP点击确认付款即可"],
+                    ["question":"怎样币币交易？" , "answer":"登录账号—【交易】-【币至】-选择需要买入的币种-点击买入—可选择限价也可选择市价（限价：自己设定看好的价格，市价：按交易所最优的价格买）—输入购买数量—【买入】"],
+                    ["question":"忘记登录密码？" , "answer":""],
+                    ["question":"怎样币币交易？" , "answer":""]]
+                ]
+            
+            
+            let filePath:String = NSHomeDirectory() + "/Documents/tfDic.plist"
+        NSArray(array: myArray).write(toFile: filePath, atomically: true)
+            print(filePath)
+            
+            let tfArray = NSArray(contentsOfFile:NSHomeDirectory() + "/Documents/tfDic.plist")
+            
+        print(tfArray as Any)
+    }
+
+    func path() {
+        let libraryPath:String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
+        print("library路径----\(libraryPath)")
+        
+        let cachePath:String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
+        print("Cache路径----\(cachePath)")
+        
+        let preferPath:String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.preferencePanesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
+        print("Prefer路径----\(preferPath)")
+        
+        let homeDir:String = NSHomeDirectory()
+        print("沙盒地址---\(homeDir)")
+
+        let imagePath = Bundle.main.path(forResource: "sale", ofType: "png")!
+        print("FlyElephnt-图片路径----\(imagePath)")
+        
+        let bundlePath = Bundle.main.bundleURL.path
+        print("FlyElephnt-App资源文件路径--\(bundlePath)")
+        
+        let testDataPath = Bundle.main.bundleURL.appendingPathComponent("FlyElephant").path
+        print("压缩文件的路径---\(testDataPath)")
+    }
+    
     //MARK:- snpArr
     func layArrView() {
         let arrStr = ["在发现模块添加一个聊天模块，并在左上角显示内测版","只有白名单用户点击能进入聊天模块，其他客户点击弹出","搜索功能去掉。","用户建立群，只有该用户可以拉人入群，其他群员不能拉人进来","人入群，其他群员不能拉人进来"]
