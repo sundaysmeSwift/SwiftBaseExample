@@ -9,9 +9,9 @@
 import UIKit
 
 //MARK:- 我的钱包--币币h
-enum eName:String{
+enum eExampleName:String{
     case name1 = "0"          //
-    case name1 = "1"
+    case name2 = "1"
     func description()->String{ //enum转String
         return self.rawValue
     }

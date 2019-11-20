@@ -29,6 +29,12 @@ extension UIView {
     func left()-> CGFloat {
         return self.frame.minX
     }
+    func width() -> CGFloat {
+        return self.frame.width
+    }
+    func height() -> CGFloat {
+        return self.frame.height
+    }
     
     // MARK: - UI-Set
     func setX(x: CGFloat) {
@@ -52,8 +58,8 @@ extension UIView {
             bundle: bundle
             ).instantiate(withOwner: nil, options: nil)[0] as? UIView
     }
-
-    func addSeparatorBottomLine(lMargin:Float = 14,rMargin:Float = 14,hegiht:Float = 0.5,lineColor:UIColor = ThemeColor.sharedInstance.getLineViewColor())-> UIView {
+    //#F5F5F5", colorNightStr: "232730
+    func addSeparatorBottomLine(lMargin:Float = 14,rMargin:Float = 14,hegiht:Float = 0.5,lineColor:UIColor = UIColor.init(hex: "#F5F5F5"))-> UIView {
 
         let lineView = UIView(frame: CGRect.init())
         lineView.backgroundColor = lineColor

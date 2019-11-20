@@ -17,7 +17,8 @@ target 'SwiftBaseExample' do
 #    pod 'FSPagerView', '~> 0.8.3'
     #解析
     pod 'Moya'
-    pod 'HandyJSON', '~> 4.2.0'
+#    pod 'HandyJSON', '~> 4.2.0'
+  #pod 'HandyJSON', '5.0.0-beta'
     pod 'SwiftyJSON'
     # 分页
     pod 'DNSPageView', '~> 1.2.0'

@@ -9,7 +9,7 @@
 import UIKit
 //import MJRefresh
 
-class SQBaseTableViewVC: UIViewController {
+class SQBaseTableViewVC: SQBaseViewController {
     
     
     private lazy var tableView:UITableView = {

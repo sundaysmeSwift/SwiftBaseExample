@@ -5,49 +5,61 @@
 //  Created by 曹亮亮 on 2019/9/6.
 //  Copyright © 2019 administrator. All rights reserved.
 //
-
+//#import <CommonCrypto/CommonDigest.h>
+//#import <objc/runtime.h>
 import UIKit
+import CommonCrypto
 
 
 extension String {
-    
-    subscript (range: Range<Int>) -> String {
-        get {
-            if range.lowerBound < 0 || range.upperBound > self.count {
-                return ""
-            }
-            let startIndex = self.index(self.startIndex, offsetBy: range.lowerBound)
-            let endIndex = self.index(self.startIndex, offsetBy: range.upperBound)
-            return String(self[startIndex..<endIndex])
+    //MARK:- range
+    //subscript(r: CountableClosedRange<Int>) -> String
+    subscript(bound: Range<Int>) -> String {
+        var lower = bound.lowerBound
+        var upper = bound.upperBound
+        
+        if lower > upper {
+            (lower, upper) = (upper, lower)
         }
         
-        set {
-            let startIndex = self.index(self.startIndex, offsetBy: range.lowerBound)
-            let endIndex = self.index(self.startIndex, offsetBy: range.upperBound)
-            let strRange = startIndex..<endIndex
-            self.replaceSubrange(strRange, with: newValue)
+        if upper > self.count {
+            upper = self.count
         }
+        
+        let start = self.index(startIndex, offsetBy: lower)
+        let end = self.index(startIndex, offsetBy: upper)
+        let sub = self[start..<end]
+        return String(sub)
     }
-    subscript(r: ClosedRange<Int>) -> String {
-        get {
-            let start = index(startIndex, offsetBy: r.lowerBound)
-            let end = index(startIndex, offsetBy: r.upperBound)
-            return self[start...end]
-        }
-        set {
-            let startIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
-            let endIndex = self.index(self.startIndex, offsetBy: r.upperBound)
-            let strRange = startIndex...endIndex
-            self.replaceSubrange(strRange, with: newValue)
-        }
+//    
+//    subscript(range: CountableRange<Int>) -> String {
+//        let bound = range.lowerBound..<range.upperBound
+//        return self[bound]
+//    }
+    
+    subscript(range: CountableClosedRange<Int>) -> String {
+        let bound = Range(range.lowerBound...range.upperBound)
+        return self[bound]
     }
     
-    //MARK:-返回string的长度
-    var length:Int{
-        get {
-            return self.characters.count;
-        }
+    subscript(range: CountablePartialRangeFrom<Int>) -> String {
+        let start = self.index(startIndex, offsetBy: range.lowerBound)
+        let sub = self.suffix(from: start)
+        return String(sub)
     }
+    
+    subscript(range: PartialRangeThrough<Int>) -> String {
+        let end = self.index(startIndex, offsetBy: range.upperBound)
+        let sub = self.prefix(through: end)
+        return String(sub)
+    }
+    
+    subscript(range: PartialRangeUpTo<Int>) -> String {
+        let end = self.index(startIndex, offsetBy: range.upperBound)
+        let sub = self.prefix(upTo: end)
+        return String(sub)
+    }
+    
     //MARK:-截取字符串从开始到 index
     func substring(to index: Int) -> String {
         guard let end_Index = validEndIndex(original: index) else {
@@ -168,66 +180,7 @@ extension String {
             else { return nil }
         return from ..< to
     }
-    //MARK:- PriceFormatter
     
-    func getNSNumber(roundingMode:RoundingMode = .down, scale:Int = 2, raiseraiseOnExactness:Bool = false,raiseOnOverflow:Bool = false, raiseOnUnderflow:Bool = false, raiseOnDivideByZero:Bool = true)->String{
-        let num = NSDecimalNumber(string: self)
-        let num2 = NSDecimalNumber(string: "0")
-        let haviors = NSDecimalNumberHandler.init(roundingMode: roundingMode, scale: scale, raiseOnExactness: raiseOnExactness, raiseOnOverflow: raiseOnOverflow, raiseOnUnderflow: raiseOnUnderflow, raiseOnDivideByZero: raiseOnDivideByZero)
-        let num3 = num.adding(num2, withBehavior: haviors)
-        return num3.stringValue
-    }
-
-    class formatPrice(price:String)->String{
-        if price.contains(":") {
-            return price
-        }
-        var hander:NSDecimalNumberHandler?
-        let priceF:CGFloat = CGFloat((price as NSString).floatValue)
-        if priceF >= 1000 {
-            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 3, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
-        }else if priceF >= 100 && priceF < 1000 {
-            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 4, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
-        }else if priceF >= 10 && priceF < 100 {
-            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 5, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
-        }else{
-            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 6, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
-        }
-        
-        let decimalprice = NSDecimalNumber.init(string: price)
-        let decimalprice1 = NSDecimalNumber.init(string: "0")
-        let r3 = decimalprice.adding(decimalprice1, withBehavior: hander)
-        if r3.stringValue == "NaN" {
-            return price
-        }
-        return r3.stringValue
-    }
-    
-    
-    class func formatPriceF(priceF: CGFloat)->String{
-        
-        var hander:NSDecimalNumberHandler?
-        
-        if priceF >= 1000 {
-            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 3, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
-        }else if priceF >= 100 && priceF < 1000 {
-            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 4, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
-        }else if priceF >= 10 && priceF < 100 {
-            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 5, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
-        }else{
-            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 6, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
-        }
-        
-        let price:String = priceF.description
-        
-        let decimalprice = NSDecimalNumber.init(string: price)
-        let decimalprice1 = NSDecimalNumber.init(string: "0")
-        let r3 = decimalprice.adding(decimalprice1, withBehavior: hander)
-        if r3.stringValue == "NaN" {
-            return price
-        }
-        return r3.stringValue
-    }
     
     //MARK:- price  打印效果 1位小数
     static func getStringPrice(price:String,priceF:Float)->String{
@@ -431,18 +384,134 @@ extension String {
         
     }//funcstringHeightWith
     
+    //MARK:- PriceFormatter
     
+    func getNSNumber(roundingMode:NSDecimalNumber.RoundingMode = .down, scale:Int = 2, raiseOnExactness:Bool = false,raiseOnOverflow:Bool = false, raiseOnUnderflow:Bool = false, raiseOnDivideByZero:Bool = true)->String{
+        let num = NSDecimalNumber(string: self)
+        let num2 = NSDecimalNumber(string: "0")
+        let haviors = NSDecimalNumberHandler.init(roundingMode: roundingMode, scale: Int16(scale), raiseOnExactness: raiseOnExactness, raiseOnOverflow: raiseOnOverflow, raiseOnUnderflow: raiseOnUnderflow, raiseOnDivideByZero: raiseOnDivideByZero)
+        let num3 = num.adding(num2, withBehavior: haviors)
+        return num3.stringValue
+    }
+
+    func formatPriceStr(price: String)-> String{
+        if price.contains(":"){
+            return price
+        }
+        var hander:NSDecimalNumberHandler?
+        let priceF:CGFloat = CGFloat((price as NSString).floatValue)
+        if priceF >= 1000 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 3, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 100 && priceF < 1000 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 4, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 10 && priceF < 100 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 5, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else{
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 6, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }
+        
+        let decimalprice = NSDecimalNumber.init(string: price)
+        let decimalprice1 = NSDecimalNumber.init(string: "0")
+        let r3 = decimalprice.adding(decimalprice1, withBehavior: hander)
+        if r3.stringValue == "NaN" {
+            return price
+        }
+        return r3.stringValue
+    }
+    
+    
+    static func formatPriceF(priceF: CGFloat)->String{
+        
+        var hander:NSDecimalNumberHandler?
+        
+        if priceF >= 1000 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 3, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 100 && priceF < 1000 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 4, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 10 && priceF < 100 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 5, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else{
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 6, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }
+        
+        let price:String = priceF.description
+        
+        let decimalprice = NSDecimalNumber.init(string: price)
+        let decimalprice1 = NSDecimalNumber.init(string: "0")
+        let r3 = decimalprice.adding(decimalprice1, withBehavior: hander)
+        if r3.stringValue == "NaN" {
+            return price
+        }
+        return r3.stringValue
+    }
+    func getStringPrice(price:String,priceF:Float)->String{
+        var hander:NSDecimalNumberHandler?
+        if priceF >= 10000000{
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 0, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 1000000 && priceF < 10000000{
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 1, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 100000 && priceF < 1000000{
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 2, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 10000 && priceF < 100000 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 3, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 1000 && priceF < 10000 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 4, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 100 && priceF < 1000 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 5, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 10 && priceF < 100 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 6, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else if priceF >= 1 && priceF < 10 {
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 7, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }else{
+            hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: 8, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        }
+        
+        let decimalprice = NSDecimalNumber.init(string: price)
+        let decimalprice1 = NSDecimalNumber.init(string: "0")
+        let r3 = decimalprice.adding(decimalprice1, withBehavior: hander)
+        return r3.stringValue
+    }
+
+    func formatPriceF(priceF: CGFloat, scale:Int = 2)->String{
+        
+        var hander:NSDecimalNumberHandler?
+        
+        hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: Int16(scale), raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        let price:String = priceF.description
+        
+        let decimalprice = NSDecimalNumber.init(string: price)
+        let decimalprice1 = NSDecimalNumber.init(string: "0")
+        let r3 = decimalprice.adding(decimalprice1, withBehavior: hander)
+        if r3.stringValue == "NaN" {
+            return price
+        }
+        return r3.stringValue
+    }
+    func formatPriceStr(price:String, scale:Int = 2)->String{
+        if price.contains(":") {
+            return price
+        }
+        var hander:NSDecimalNumberHandler?
+        hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: Int16(scale), raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        let decimalprice = NSDecimalNumber.init(string: price)
+        let decimalprice1 = NSDecimalNumber.init(string: "0")
+        let r3 = decimalprice.adding(decimalprice1, withBehavior: hander)
+        if r3.stringValue == "NaN" {
+            return price
+        }
+        return r3.stringValue
+    }
     //MARK:- DegitailTransfer
-    func doubleValue(decimalDigits:NSInteger) -> String{
-        let formater = "%."+"\(decimalDigits)"+"lf"
+    func doubleValueStr(decimalDigits:NSInteger) -> String{
+        let formater = "%." + "\(decimalDigits)" + "lf"
         return String(format: formater, (self as NSString).doubleValue)
     }
-    func floatValue(decimalDigits:NSInteger) -> String{
-        let formater = "%."+"\(decimalDigits)"+"lf"
+    func floatValueStr(decimalDigits:NSInteger) -> String{
+        let formater = "%." + "\(decimalDigits)" + "lf"
         return String(format: formater, (self as NSString).floatValue)
     }
     
-    func integerValue() -> NSInteger{
+    func toIntegerValue() -> NSInteger{
         return (self as NSString).integerValue
     }
     
@@ -457,4 +526,28 @@ extension String {
     func toDouble() -> Double? {
         return Double(self)
     }
+    
+    func toFloatDecimal(digits:NSInteger) -> Float {
+
+        return Float(String(format:"%." + "\(digits)" + "lf", self))!
+    }
+    
+    func toDoubleDecimal(digits:NSInteger) -> Double {
+        return Double(String(format:"%." + "\(digits)" + "lf", self))!
+    }
+    
+    //MARK:- NSDate
+    func timeStampToString(dateFormat:String = "yyyy-MM-dd HH:mm:ss")->String {
+        
+        let string = NSString(string: self)
+        
+        let timeSta:TimeInterval = string.doubleValue
+        let dfmatter = DateFormatter()
+        dfmatter.dateFormat = dateFormat
+        
+        let date = NSDate(timeIntervalSince1970: timeSta/1000)
+        
+        return dfmatter.string(from: date as Date)
+    }
+    
 }

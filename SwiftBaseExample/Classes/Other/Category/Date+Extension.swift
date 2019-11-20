@@ -10,16 +10,50 @@ import Foundation
 
 extension Date {
     
-    class func timeStampToString(dateFormat:String = "yyyy-MM-dd HH:mm:ss")->String {
-        
-        let string = NSString(string: self)
-        
+ /// 获取当前 秒级 时间戳 - 10位
+    var timeStamp : String {
+        let timeInterval: TimeInterval = self.timeIntervalSince1970
+        let timeStamp = Int(timeInterval)
+        return "\(timeStamp)"
+    }
+
+    /// 获取当前 毫秒级 时间戳 - 13位
+    var millStamp : String {
+        let timeInterval: TimeInterval = self.timeIntervalSince1970
+        let millisecond = CLongLong(round(timeInterval*1000))
+        return "\(millisecond)"
+    }
+
+    
+    static func timeStampStrToString(timeStamp:String, dateFormat:String = "yyyy-MM-dd HH:mm:ss")->String {
+        let string = NSString(string: timeStamp)
         let timeSta:TimeInterval = string.doubleValue
         let dfmatter = DateFormatter()
         dfmatter.dateFormat = dateFormat
-        
+        let date = NSDate(timeIntervalSince1970: timeSta)
+        return dfmatter.string(from: date as Date)
+    }
+    
+    static func millTimeStampStrToString(timeStamp:String, dateFormat:String = "yyyy-MM-dd HH:mm:ss")->String {
+        let string = NSString(string: timeStamp)
+        let timeSta:TimeInterval = string.doubleValue
+        let dfmatter = DateFormatter()
+        dfmatter.dateFormat = dateFormat
         let date = NSDate(timeIntervalSince1970: timeSta/1000)
-        
+        return dfmatter.string(from: date as Date)
+    }
+    
+    static func timeStampIntToString(timeStamp:TimeInterval, dateFormat:String = "yyyy-MM-dd HH:mm:ss")->String {
+        let dfmatter = DateFormatter()
+        dfmatter.dateFormat = dateFormat
+        let date = NSDate(timeIntervalSince1970: timeStamp)
+        return dfmatter.string(from: date as Date)
+    }
+    
+    static func millTimeStampIntToString(timeStamp:TimeInterval, dateFormat:String = "yyyy-MM-dd HH:mm:ss")->String {
+        let dfmatter = DateFormatter()
+        dfmatter.dateFormat = dateFormat
+        let date = NSDate(timeIntervalSince1970: timeStamp/1000)
         return dfmatter.string(from: date as Date)
     }
     
@@ -40,11 +74,11 @@ extension Date {
     }
     
     /// 判断是否为昨天
-    func isYesterday() -> Bool {
+    func isYesterday(formaterStr:String = "yyyy-MM-dd") -> Bool {
         var now = Date()
         //格式: 2017-06-15 21:46:00
         let fmt = DateFormatter()
-        fmt.dateFormat = "yyyy-MM-dd"
+        fmt.dateFormat = formaterStr
         //取得时间字符串
         let dateStr = fmt.string(from: self)
         //取得现在时间
@@ -59,10 +93,10 @@ extension Date {
     }
     
     /// 判断是否为今天
-    func isToday() -> Bool {
+    func isToday(formaterStr:String = "yyyy-MM-dd") -> Bool {
         let now = Date()
         let fmt = DateFormatter()
-        fmt.dateFormat = "yyyy-MM-dd"
+        fmt.dateFormat = formaterStr
         let dateStr = fmt.string(from: self)
         let nowStr = fmt.string(from: now)
         return dateStr == nowStr

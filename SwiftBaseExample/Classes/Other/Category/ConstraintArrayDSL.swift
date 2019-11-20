@@ -24,6 +24,8 @@
 //  Created by charles on 2017/8/2.
 //  Copyright © 2017年 charles. All rights reserved.
 //   使用博客 https://www.jianshu.com/p/74b4561828f7
+//https://blog.csdn.net/zn_echonn/article/details/80395156
+//https://www.cnblogs.com/sundaysme/articles/11775738.html
 
 import SnapKit
 
@@ -79,6 +81,175 @@ public struct ConstraintArrayDSL {
         }
     }
     
+    
+    /// distribute with the width that you give
+   /// you should calculate the width of each item first
+   ///
+   /// - Parameters:
+   ///   - verticalSpacing: the vertical spacing between each item
+   ///   - horizontalSpacing: the horizontal spacing between each item
+   ///   - tailSpacing: the spacing after the last item and the container
+   ///   - maxWidth: the max width of each row or each item
+   ///   - determineWidths: the width of each item, you must ensure determineWidths.count == self.array.count
+   ///   - itemHeight: the height of each item
+   ///   - edgeInset: the edgeInset of all item, default is UIEdgeInsets.zero
+   ///                if edgeInset.left or edgeInset.right is not 0, the maxWidth will change, maxWidth -=  (edgeInset.left +  edgeInset.right)
+   ///   - topConstrainView: the view before the first item
+    ///https://blog.csdn.net/zn_echonn/article/details/80395156
+    ///https://www.cnblogs.com/sundaysme/articles/11775738.html
+   public func distributeDetermineWidthViews(verticalSpacing: CGFloat,
+                                             horizontalSpacing: CGFloat,
+                                             maxWidth: CGFloat,
+                                             determineWidths: [CGFloat],
+                                             itemHeight: CGFloat,
+                                             edgeInset: UIEdgeInsets = UIEdgeInsets.zero,
+                                             topConstrainView: ConstraintView? = nil) {
+       
+       guard self.array.count > 1, determineWidths.count == self.array.count, let tempSuperview = commonSuperviewOfViews() else {
+           return
+       }
+       
+       var prev : ConstraintView?
+       var vMinX: CGFloat = 0
+       
+       let maxW = maxWidth - (edgeInset.right + edgeInset.left)
+       
+       for (i,v) in self.array.enumerated() {
+           
+           let curWidth = min(determineWidths[i], maxW)
+           v.snp.makeConstraints({ (make) in
+               make.width.equalTo(curWidth)
+               make.bottom.lessThanOrEqualTo(tempSuperview).offset(-edgeInset.bottom)
+               make.height.equalTo(itemHeight)
+               
+               if prev == nil { // the first one
+                   let tmpTarget = topConstrainView != nil ? topConstrainView!.snp.bottom : tempSuperview.snp.top
+                   make.top.equalTo(tmpTarget).offset(edgeInset.top)
+                   make.left.equalTo(tempSuperview).offset(edgeInset.left)
+                   vMinX = curWidth + horizontalSpacing
+               }
+               else {
+                   make.right.lessThanOrEqualToSuperview().offset(-edgeInset.right)
+                   
+                   if vMinX + curWidth > maxW {
+                       make.top.equalTo(prev!.snp.bottom).offset(verticalSpacing)
+                       make.left.equalTo(tempSuperview).offset(edgeInset.left)
+                       vMinX = curWidth + horizontalSpacing
+                   }
+                   else {
+                       make.top.equalTo(prev!)
+                       make.left.equalTo(prev!.snp.right).offset(horizontalSpacing)
+                       vMinX += curWidth + horizontalSpacing
+                   }
+               }
+           })
+           
+           prev = v
+       }
+   }
+    
+    ///只使用与label的简单竖排和横排
+    public func distributeDetermineViews(verticalSpacing: CGFloat,
+                                              horizontalSpacing: CGFloat,
+                                              maxWidth: CGFloat,
+                                              itemHeight: CGFloat,
+                                              edgeInset: UIEdgeInsets = UIEdgeInsets.zero,
+                                              topConstrainView: ConstraintView? = nil) {
+        
+        guard self.array.count > 1, let tempSuperview = commonSuperviewOfViews() else {
+            return
+        }
+        
+        var prev : ConstraintView?
+        var vMinX: CGFloat = 0
+        
+        let maxW = maxWidth - (edgeInset.right + edgeInset.left)
+        
+        for (i,v) in self.array.enumerated() {
+            v.sizeToFit()
+            let curWidth = min(v.width(), maxW)
+            v.snp.makeConstraints({ (make) in
+                make.width.equalTo(curWidth)
+                make.bottom.lessThanOrEqualTo(tempSuperview).offset(-edgeInset.bottom)
+                make.height.equalTo(itemHeight)
+                
+                if prev == nil { // the first one
+                    let tmpTarget = topConstrainView != nil ? topConstrainView!.snp.bottom : tempSuperview.snp.top
+                    make.top.equalTo(tmpTarget).offset(edgeInset.top)
+                    make.left.equalTo(tempSuperview).offset(edgeInset.left)
+                    vMinX = curWidth + horizontalSpacing
+                }
+                else {
+                    make.right.lessThanOrEqualToSuperview().offset(-edgeInset.right)
+                    
+                    if vMinX + curWidth > maxW {
+                        make.top.equalTo(prev!.snp.bottom).offset(verticalSpacing)
+                        make.left.equalTo(tempSuperview).offset(edgeInset.left)
+                        vMinX = curWidth + horizontalSpacing
+                    }
+                    else {
+                        make.top.equalTo(prev!)
+                        make.left.equalTo(prev!.snp.right).offset(horizontalSpacing)
+                        vMinX += curWidth + horizontalSpacing
+                    }
+                }
+            })
+            
+            prev = v
+        }
+    }
+    ///只使用与label的简单竖排和横排
+    public func distributeDetermineWrapViews(verticalSpacing: CGFloat,
+                                              horizontalSpacing: CGFloat,
+                                              maxWidth: CGFloat,
+                                              edgeInset: UIEdgeInsets = UIEdgeInsets.zero,
+                                              topConstrainView: ConstraintView? = nil,maskBourds:Bool = false ,cornerRadio:CGFloat = 10) {
+        
+        guard self.array.count > 1, let tempSuperview = commonSuperviewOfViews() else {
+            return
+        }
+        
+        var prev : ConstraintView?
+        var vMinX: CGFloat = 0
+        
+        let maxW = maxWidth - (edgeInset.right + edgeInset.left)
+        
+        for (i,v) in self.array.enumerated() {
+            v.sizeToFit()
+            if maskBourds == true {
+                v.layer.cornerRadius = cornerRadio
+                v.layer.masksToBounds = maskBourds
+            }
+            let curWidth = min(v.width(), maxW)
+            v.snp.makeConstraints({ (make) in
+                make.width.equalTo(curWidth)
+                make.bottom.lessThanOrEqualTo(tempSuperview).offset(-edgeInset.bottom)
+                
+                if prev == nil { // the first one
+                    let tmpTarget = topConstrainView != nil ? topConstrainView!.snp.bottom : tempSuperview.snp.top
+                    make.top.equalTo(tmpTarget).offset(edgeInset.top)
+                    make.left.equalTo(tempSuperview).offset(edgeInset.left)
+                    vMinX = curWidth + horizontalSpacing
+                }
+                else {
+                    make.right.lessThanOrEqualToSuperview().offset(-edgeInset.right)
+                    
+                    if vMinX + curWidth > maxW {
+                        make.top.equalTo(prev!.snp.bottom).offset(verticalSpacing)
+                        make.left.equalTo(tempSuperview).offset(edgeInset.left)
+                        vMinX = curWidth + horizontalSpacing
+                    }
+                    else {
+                        make.top.equalTo(prev!)
+                        make.left.equalTo(prev!.snp.right).offset(horizontalSpacing)
+                        vMinX += curWidth + horizontalSpacing
+                    }
+                }
+            })
+            
+            prev = v
+        }
+    }
     /// distribute with fixed spacing
     ///
     /// - Parameters:
@@ -300,6 +471,151 @@ public struct ConstraintArrayDSL {
         }
     }
     
+//   /////////////////只使用与label的简单竖排和横排
+    public func distributeViewsAlongLeading(axisType:ConstraintAxis, fixedSpacing:CGFloat = 0, leadSpacing:CGFloat = 0,tailSpacing:CGFloat = 0) {
+        
+        guard self.array.count > 1, let tempSuperView = commonSuperviewOfViews() else {
+            return
+        }
+        
+        if axisType == .horizontal {
+            var prev : ConstraintView?
+            for (i, v) in self.array.enumerated() {
+                v.sizeToFit()
+                v.snp.makeConstraints({ (make) in
+                    guard let prev = prev else {//first one
+                        make.left.equalTo(tempSuperView).offset(leadSpacing)
+                        make.right.lessThanOrEqualTo(tempSuperView).offset(tailSpacing)
+                        return
+                    }
+                    if prev.right() + v.width() + fixedSpacing + fixedSpacing > tempSuperView.right() {
+                        make.left.equalTo(tempSuperView).offset(leadSpacing)
+                        make.top.equalTo(prev.snp.bottom).offset(fixedSpacing)
+                        make.right.lessThanOrEqualTo(tempSuperView).offset(-tailSpacing)
+                    }else{
+                        make.top.equalTo(prev.snp.top)
+                        make.left.equalTo(prev.snp.right).offset(fixedSpacing)
+                        make.right.lessThanOrEqualTo(tempSuperView).offset(-tailSpacing)
+                    }
+                    
+                })
+                prev = v;
+            }
+        }else {
+            var prev : ConstraintView?
+            for (i, v) in self.array.enumerated() {
+                v.snp.makeConstraints({ (make) in
+                    guard let prev = prev else {//first one
+                        make.top.equalTo(tempSuperView).offset(leadSpacing);
+                        return
+                    }
+                    make.left.equalTo(tempSuperView).offset(leadSpacing)
+                    make.top.equalTo(prev.snp.bottom).offset(fixedSpacing)
+                    if (i == self.array.count - 1) {//last one
+                        make.bottom.equalTo(tempSuperView).offset(-tailSpacing);
+                    }
+                })
+                prev = v;
+            }
+        }
+    }
+    /////   /////////////////只使用与label的简单竖排和横排
+    public func distributeViewsAlongTraling(axisType:ConstraintAxis, fixedSpacing:CGFloat = 0, leadSpacing:CGFloat = 0, tailSpacing:CGFloat = 0) {
+        
+        guard self.array.count > 1, let tempSuperView = commonSuperviewOfViews() else {
+            return
+        }
+        
+        if axisType == .horizontal {
+            var prev : ConstraintView?
+            for (i, v) in self.array.reversed().enumerated() {
+                v.snp.makeConstraints({ (make) in
+                    guard let prev = prev else {//first one
+                        make.left.equalTo(tempSuperView).offset(leadSpacing)
+                        return
+                    }
+                    make.width.equalTo(prev)
+                    make.left.equalTo(prev.snp.right).offset(fixedSpacing)
+                    if (i == self.array.count - 1) {//last one
+                        make.right.equalTo(tempSuperView).offset(-tailSpacing)
+                    }
+                })
+                prev = v;
+            }
+        }else {
+            var prev : ConstraintView?
+            for (i, v) in self.array.enumerated() {
+                v.snp.makeConstraints({ (make) in
+                    guard let prev = prev else {//first one
+                        make.top.equalTo(tempSuperView).offset(leadSpacing);
+                        return
+                    }
+                    make.height.equalTo(prev)
+                    make.top.equalTo(prev.snp.bottom).offset(fixedSpacing)
+                    if (i == self.array.count - 1) {//last one
+                        make.bottom.equalTo(tempSuperView).offset(-tailSpacing);
+                    }
+                })
+                prev = v;
+            }
+        }
+    }
+//    /// distribute with fixed item size
+//    ///
+//    /// - Parameters:
+//    ///   - axisType: which axis to distribute items along
+//    ///   - fixedItemLength: the fixed length of each item
+//    ///   - leadSpacing: the spacing before the first item and the container
+//    ///   - tailSpacing: the spacing after the last item and the container
+//    public func distributeViewsAlong(axisType:ConstraintAxis, fixedItemLength:CGFloat = 0, leadSpacing:CGFloat = 0, tailSpacing:CGFloat = 0) {
+//        
+//        guard self.array.count > 1, let tempSuperView = commonSuperviewOfViews() else {
+//            return
+//        }
+//        
+//        if axisType == .horizontal {
+//            var prev : ConstraintView?
+//            for (i, v) in self.array.enumerated() {
+//                v.snp.makeConstraints({ (make) in
+//                    make.width.equalTo(fixedItemLength)
+//                    if prev != nil {
+//                        if (i == self.array.count - 1) {//last one
+//                            make.right.equalTo(tempSuperView).offset(-tailSpacing);
+//                        } else {
+//                            let offset = (CGFloat(1) - (CGFloat(i) / CGFloat(self.array.count - 1))) *
+//                                (fixedItemLength + leadSpacing) -
+//                                CGFloat(i) * tailSpacing / CGFloat(self.array.count - 1)
+//                            make.right.equalTo(tempSuperView).multipliedBy(CGFloat(i) / CGFloat(self.array.count - 1)).offset(offset)
+//                        }
+//                    }else {//first one
+//                        make.left.equalTo(tempSuperView).offset(leadSpacing);
+//                    }
+//                })
+//                prev = v;
+//            }
+//        }else {
+//            var prev : ConstraintView?
+//            for (i, v) in self.array.enumerated() {
+//                v.snp.makeConstraints({ (make) in
+//                    make.height.equalTo(fixedItemLength)
+//                    if prev != nil {
+//                        if (i == self.array.count - 1) {//last one
+//                            make.bottom.equalTo(tempSuperView).offset(-tailSpacing);
+//                        }else {
+//                            let offset = (CGFloat(1) - (CGFloat(i) / CGFloat(self.array.count - 1))) *
+//                                (fixedItemLength + leadSpacing) -
+//                                CGFloat(i) * tailSpacing / CGFloat(self.array.count - 1)
+//                            make.bottom.equalTo(tempSuperView).multipliedBy(CGFloat(i) / CGFloat(self.array.count-1)).offset(offset)
+//                        }
+//                    }else {//first one
+//                        make.top.equalTo(tempSuperView).offset(leadSpacing);
+//                    }
+//                })
+//                prev = v;
+//            }
+//        }
+//    }
+//    /////////////
     internal let array: Array<ConstraintView>
     
     internal init(array: Array<ConstraintView>) {
@@ -313,6 +629,8 @@ public extension Array {
         return ConstraintArrayDSL(array: self as! Array<ConstraintView>)
     }
 }
+
+
 
 private extension ConstraintArrayDSL {
     func commonSuperviewOfViews() -> ConstraintView? {

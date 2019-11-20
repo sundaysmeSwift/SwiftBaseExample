@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A014371A232A4B8600D7FC3C /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0143719232A4B8600D7FC3C /* ConstraintArrayDSL.swift */; };
 		A0171EA023289BEA00A66924 /* UtilMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0171E9F23289BEA00A66924 /* UtilMacro.swift */; };
 		A02D29A023363E1100CDBB9E /* InterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D299F23363E1100CDBB9E /* InterUtil.swift */; };
 		A02EE0982327C4500074C733 /* SQBaseTableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02EE0972327C4500074C733 /* SQBaseTableViewVC.swift */; };
-		A032A523236C39260032CA7B /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A032A522236C39260032CA7B /* ConstraintArrayDSL.swift */; };
 		A032A525236C3E530032CA7B /* UserNotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A032A524236C3E530032CA7B /* UserNotificationUtil.swift */; };
 		A032A529236C3E8C0032CA7B /* EnumUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A032A528236C3E8C0032CA7B /* EnumUtils.swift */; };
 		A032A52E236C417B0032CA7B /* SQCopyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A032A52D236C417B0032CA7B /* SQCopyLabel.swift */; };
@@ -33,6 +31,7 @@
 		A0D1214D23227A99001F266E /* UtilTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D1214C23227A99001F266E /* UtilTool.swift */; };
 		A0D1214F23227ADB001F266E /* DecimalNumberTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D1214E23227ADB001F266E /* DecimalNumberTool.swift */; };
 		A0D1215123229275001F266E /* Range+SQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D1215023229275001F266E /* Range+SQ.swift */; };
+		A0DB96A82382A87200937AB7 /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB96A72382A87200937AB7 /* ConstraintArrayDSL.swift */; };
 		C32D2010229A2104006279C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D200F229A2104006279C5 /* AppDelegate.swift */; };
 		C32D2012229A2104006279C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D2011229A2104006279C5 /* ViewController.swift */; };
 		C32D2015229A2104006279C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C32D2013229A2104006279C5 /* Main.storyboard */; };
@@ -59,11 +58,9 @@
 		55BC96E1EA6D59C96B75AC94 /* Pods-SwiftBaseExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftBaseExample.release.xcconfig"; path = "Target Support Files/Pods-SwiftBaseExample/Pods-SwiftBaseExample.release.xcconfig"; sourceTree = "<group>"; };
 		69391904D613D4EBCAB9E418 /* Pods-SwiftBaseExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftBaseExample.debug.xcconfig"; path = "Target Support Files/Pods-SwiftBaseExample/Pods-SwiftBaseExample.debug.xcconfig"; sourceTree = "<group>"; };
 		7646E7FA9F193B5138FCD6A2 /* Pods_SwiftBaseExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftBaseExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A0143719232A4B8600D7FC3C /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintArrayDSL.swift; sourceTree = "<group>"; };
 		A0171E9F23289BEA00A66924 /* UtilMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilMacro.swift; sourceTree = "<group>"; };
 		A02D299F23363E1100CDBB9E /* InterUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterUtil.swift; sourceTree = "<group>"; };
 		A02EE0972327C4500074C733 /* SQBaseTableViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQBaseTableViewVC.swift; sourceTree = "<group>"; };
-		A032A522236C39260032CA7B /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintArrayDSL.swift; path = "../../../../../SwiftExample-1/SwiftExample/Extension/ConstraintArrayDSL.swift"; sourceTree = "<group>"; };
 		A032A524236C3E530032CA7B /* UserNotificationUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationUtil.swift; sourceTree = "<group>"; };
 		A032A528236C3E8C0032CA7B /* EnumUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumUtils.swift; sourceTree = "<group>"; };
 		A032A52D236C417B0032CA7B /* SQCopyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQCopyLabel.swift; sourceTree = "<group>"; };
@@ -85,6 +82,7 @@
 		A0D1214C23227A99001F266E /* UtilTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilTool.swift; sourceTree = "<group>"; };
 		A0D1214E23227ADB001F266E /* DecimalNumberTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalNumberTool.swift; sourceTree = "<group>"; };
 		A0D1215023229275001F266E /* Range+SQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Range+SQ.swift"; sourceTree = "<group>"; };
+		A0DB96A72382A87200937AB7 /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintArrayDSL.swift; sourceTree = "<group>"; };
 		C32D200C229A2104006279C5 /* SwiftBaseExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBaseExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C32D200F229A2104006279C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C32D2011229A2104006279C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -317,25 +315,24 @@
 		C32D204A229AA4F8006279C5 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				A032A522236C39260032CA7B /* ConstraintArrayDSL.swift */,
-				A03E971B232F30F000225AE6 /* UIAlertController+SQHelper.swift */,
-				A0143719232A4B8600D7FC3C /* ConstraintArrayDSL.swift */,
+				A0DB96A72382A87200937AB7 /* ConstraintArrayDSL.swift */,
 				A0D12146232275C5001F266E /* Date+Extension.swift */,
-				A0D121422322751A001F266E /* UICollectionView+Extension.swift */,
-				A0D121402322749B001F266E /* UITableView+Extension.swift */,
+				A02D299F23363E1100CDBB9E /* InterUtil.swift */,
+				A0D1214823227972001F266E /* NSMutableAttributedString+SQ.swift */,
+				A0D1213A23225BBF001F266E /* NSObject+SQExtension.swift */,
+				A0D1215023229275001F266E /* Range+SQ.swift */,
+				A0D1213C2322659E001F266E /* String+SQExtension.swift */,
+				A03E971B232F30F000225AE6 /* UIAlertController+SQHelper.swift */,
 				A06C4B0423213694009FB0B2 /* UIButton+SQExtension.swift */,
+				A0D121422322751A001F266E /* UICollectionView+Extension.swift */,
 				A06C4B0123213693009FB0B2 /* UIColor+SQExtension.swift */,
-				A06C4B0223213693009FB0B2 /* UILabel+SQExtension.swift */,
-				A06C4B0323213694009FB0B2 /* UIView+SQExtension.swift */,
 				C32D204B229AA607006279C5 /* UIImage+SQExtension.swift */,
 				C32D2052229B1845006279C5 /* UIImageView+SQExtension.swift */,
-				A0D1213A23225BBF001F266E /* NSObject+SQExtension.swift */,
-				A0D1213C2322659E001F266E /* String+SQExtension.swift */,
-				A0D1213E2322730C001F266E /* UIViewController+SQExtension.swift */,
-				A0D1214823227972001F266E /* NSMutableAttributedString+SQ.swift */,
-				A0D1215023229275001F266E /* Range+SQ.swift */,
-				A02D299F23363E1100CDBB9E /* InterUtil.swift */,
+				A06C4B0223213693009FB0B2 /* UILabel+SQExtension.swift */,
+				A0D121402322749B001F266E /* UITableView+Extension.swift */,
 				A0C08CE523409A7D00FC1D0E /* UITextField+SQExtension.swift */,
+				A06C4B0323213694009FB0B2 /* UIView+SQExtension.swift */,
+				A0D1213E2322730C001F266E /* UIViewController+SQExtension.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -471,10 +468,10 @@
 				A03E971C232F30F000225AE6 /* UIAlertController+SQHelper.swift in Sources */,
 				A0C08CE623409A7D00FC1D0E /* UITextField+SQExtension.swift in Sources */,
 				C32D2046229A9B33006279C5 /* MeController.swift in Sources */,
+				A0DB96A82382A87200937AB7 /* ConstraintArrayDSL.swift in Sources */,
 				A0171EA023289BEA00A66924 /* UtilMacro.swift in Sources */,
 				A06C4B0923213694009FB0B2 /* UIButton+SQExtension.swift in Sources */,
 				A032A525236C3E530032CA7B /* UserNotificationUtil.swift in Sources */,
-				A032A523236C39260032CA7B /* ConstraintArrayDSL.swift in Sources */,
 				A06C4B0623213694009FB0B2 /* UIColor+SQExtension.swift in Sources */,
 				C32D2042229A9B09006279C5 /* SecondController.swift in Sources */,
 				A0D1214D23227A99001F266E /* UtilTool.swift in Sources */,
@@ -484,7 +481,6 @@
 				C32D2053229B1845006279C5 /* UIImageView+SQExtension.swift in Sources */,
 				C32D204F229AEAF0006279C5 /* GlobalConfigDefinition.swift in Sources */,
 				C32D204C229AA607006279C5 /* UIImage+SQExtension.swift in Sources */,
-				A014371A232A4B8600D7FC3C /* ConstraintArrayDSL.swift in Sources */,
 				A0D121432322751B001F266E /* UICollectionView+Extension.swift in Sources */,
 				A097E60523274C7B006FBC7F /* Myview.swift in Sources */,
 				C32D2012229A2104006279C5 /* ViewController.swift in Sources */,

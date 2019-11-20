@@ -29,7 +29,7 @@ extension UILabel {
     // 设置`numberOfLines = 0`的原因：
     // 配合方法`func boundingRect(with constrainedSize: CGSize, font: UIFont, lineSpacing: CGFloat? = nil, lines: Int) -> CGSize`使用，可以很好的解决不能正常显示限制行数的问题；
     // 如果为label设置了限制行数（大于0的前提），使用上面的计算方法（带行间距），同时字符串的实际行数大于限制行数，这时候的高度会使label不能正常显示。
-    func setText(with normalString: String, lineSpacing: CGFloat?, frame: CGRect) {
+    func setAttributeTextStr(with normalString: String, lineSpacing: CGFloat?, frame: CGRect) {
         self.frame = frame
         self.numberOfLines = 0
                 
@@ -44,8 +44,8 @@ extension UILabel {
         }
         let attributedString = NSMutableAttributedString(string: normalString)
         let range = NSRange(location: 0, length: attributedString.length)
-        attributedString.addAttributes([NSAttributedStringKey.font: font], range: range)
-        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: range)
+        attributedString.addAttributes([NSAttributedString.Key.font: font as Any], range: range)
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: range)
 
         self.attributedText = attributedString
     }

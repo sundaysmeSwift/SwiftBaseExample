@@ -165,3 +165,38 @@ func getTopVC(withCurrentVC VC :UIViewController?) -> UIViewController? {
 //    let r3 = decimalprice.adding(decimalprice1, withBehavior: hander)
 //    return r3.stringValue
 //}
+
+
+//MARK:- 返回固定小数点位数的小数
+func sformatPriceF(priceF: CGFloat, scale:Int = 2)->String{
+   
+   var hander:NSDecimalNumberHandler?
+   
+   hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: Int16(scale), raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+   let price:String = priceF.description
+   
+   let decimalprice = NSDecimalNumber.init(string: price)
+   let decimalprice1 = NSDecimalNumber.init(string: "0")
+   let r3 = decimalprice.adding(decimalprice1, withBehavior: hander)
+   if r3.stringValue == "NaN" {
+       return price
+   }
+    return r3.stringValue
+}
+
+
+func sformatPriceStr(price:String, scale:Int = 2)->String{
+    if price.contains(":") {
+        return price
+    }
+    var hander:NSDecimalNumberHandler?
+    hander = NSDecimalNumberHandler.init(roundingMode: NSDecimalNumber.RoundingMode.down, scale: Int16(scale), raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+    let decimalprice = NSDecimalNumber.init(string: price)
+    let decimalprice1 = NSDecimalNumber.init(string: "0")
+    let r3 = decimalprice.adding(decimalprice1, withBehavior: hander)
+    if r3.stringValue == "NaN" {
+        return price
+    }
+    return r3.stringValue
+}
+

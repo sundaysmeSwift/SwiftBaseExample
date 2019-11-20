@@ -76,7 +76,7 @@ func getURlWithWebsite(urlStr:String,htp:String = "https://") -> String {
         }
 //        let startIndex = urlStr.index(urlStr.startIndex, offsetBy: 0)
         //        let endIndex = urlStr.index(urlStr.startIndex, offsetBy: 7)
-        let scheme = urlStr[0..<urlRange.lowerBound]
+        let scheme = urlStr[urlStr.startIndex..<urlRange.lowerBound]
         
         if ((scheme.caseInsensitiveCompare("http") == .orderedSame) || (scheme.caseInsensitiveCompare("https") == .orderedSame)){
             rstr = urlStr

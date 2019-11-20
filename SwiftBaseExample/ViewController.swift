@@ -48,8 +48,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.addObserver()
+        
+        print("abcdef"[1...5])
     }
 
     func testSaveDicPlist(){
@@ -115,7 +115,7 @@ class ViewController: UIViewController {
     
     //MARK:- 监听
     func addObser(){
-        NotificationCenter.default.addObserver(self, selector: #selector(notificationMsg(notification:)), name: NSNotification.Name(rawValue: ud_Msg), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(notificationMsg(notification:)), name: Notification.Name.ud_Msg, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: Notification.Name.ud_refreshData, object: nil)
     }
     @objc func notificationMsg(notification:Notification) -> Void {
