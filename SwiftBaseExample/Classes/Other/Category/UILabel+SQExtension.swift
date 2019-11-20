@@ -2,8 +2,8 @@
 //  UILabelSQExtension.swift
 //  SwiftExample
 //
-//  Created by 曹亮亮 on 2019/9/5.
-//  Copyright © 2019 曹亮亮. All rights reserved.
+//  Created by 张少晴 on 2019/9/5.
+//  Copyright © 2019 张少晴. All rights reserved.
 //
 
 import UIKit

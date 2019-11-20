@@ -2,7 +2,7 @@
 //  SQCopyLabel.swift
 //  Quantbroker
 //
-//  Created by 曹亮亮 on 2019/10/25.
+//  Created by 张少晴 on 2019/10/25.
 //  Copyright © 2019 huoju. All rights reserved.
 //
 
