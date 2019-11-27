@@ -52,6 +52,10 @@ target 'SwiftBaseExample' do
 ###圆角
   #pod 'ZYCornerRadius'
   #pod 'HYBImageCliped'
+  #极光推送
+#  pod 'JPush', '3.2.4'
+  #加密
+  pod 'CryptoSwift', '~> 1.0.0'
 
 #        swift4 = ['LTScrollView', 'SlideMenuController']
 
