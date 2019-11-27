@@ -354,6 +354,8 @@ public struct ConstraintArrayDSL {
         }
     }
     
+    
+    
     /// distribute Sudoku with fixed item size
     ///
     /// - Parameters:
@@ -411,7 +413,7 @@ public struct ConstraintArrayDSL {
             })
         }
     }
-    
+
     /// distribute Sudoku with fixed item spacing
     ///
     /// - Parameters:
