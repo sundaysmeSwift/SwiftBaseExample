@@ -51,6 +51,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         print("abcdef"[1...5])
+
     }
 
     func testSaveDicPlist(){
@@ -137,6 +138,7 @@ class ViewController: UIViewController {
         self.requestData()
     }
     func requestData() {
+
         apiProvider.request(.getUserLogin) { (result) -> () in
             switch result {
             case let .success(response):
@@ -160,6 +162,7 @@ class ViewController: UIViewController {
                 print(error)
             }
         }
+
     }
 }
 
