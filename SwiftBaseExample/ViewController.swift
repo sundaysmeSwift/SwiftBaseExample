@@ -50,6 +50,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         print("abcdef"[1...5])
+        print("132")
     }
 
     func testSaveDicPlist(){

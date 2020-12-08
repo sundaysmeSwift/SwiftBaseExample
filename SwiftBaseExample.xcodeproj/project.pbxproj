@@ -15,7 +15,6 @@
 		A032A52E236C417B0032CA7B /* SQCopyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A032A52D236C417B0032CA7B /* SQCopyLabel.swift */; };
 		A03E971C232F30F000225AE6 /* UIAlertController+SQHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03E971B232F30F000225AE6 /* UIAlertController+SQHelper.swift */; };
 		A04B25FF238E74A0002BB712 /* NSFileManager+SQExtionsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04B25FE238E74A0002BB712 /* NSFileManager+SQExtionsion.swift */; };
-		A04B2627238E7CED002BB712 /* ViewControllera.m in Sources */ = {isa = PBXBuildFile; fileRef = A04B2626238E7CED002BB712 /* ViewControllera.m */; };
 		A04B2629238E7DA1002BB712 /* AesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04B2628238E7DA1002BB712 /* AesUtil.swift */; };
 		A06C4B0623213694009FB0B2 /* UIColor+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C4B0123213693009FB0B2 /* UIColor+SQExtension.swift */; };
 		A06C4B0723213694009FB0B2 /* UILabel+SQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C4B0223213693009FB0B2 /* UILabel+SQExtension.swift */; };
@@ -70,7 +69,6 @@
 		A03E971B232F30F000225AE6 /* UIAlertController+SQHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+SQHelper.swift"; sourceTree = "<group>"; };
 		A04B25FE238E74A0002BB712 /* NSFileManager+SQExtionsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFileManager+SQExtionsion.swift"; sourceTree = "<group>"; };
 		A04B2624238E7CED002BB712 /* SwiftBaseExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftBaseExample-Bridging-Header.h"; sourceTree = "<group>"; };
-		A04B2626238E7CED002BB712 /* ViewControllera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewControllera.m; sourceTree = "<group>"; };
 		A04B2628238E7DA1002BB712 /* AesUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AesUtil.swift; sourceTree = "<group>"; };
 		A06C4B0123213693009FB0B2 /* UIColor+SQExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+SQExtension.swift"; sourceTree = "<group>"; };
 		A06C4B0223213693009FB0B2 /* UILabel+SQExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+SQExtension.swift"; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 		C32D2003229A2104006279C5 = {
 			isa = PBXGroup;
 			children = (
-				A04B2626238E7CED002BB712 /* ViewControllera.m */,
 				C32D200E229A2104006279C5 /* SwiftBaseExample */,
 				C32D200D229A2104006279C5 /* Products */,
 				0ED053BFFF3784B510F71228 /* Pods */,
@@ -501,7 +498,6 @@
 				A0D121412322749B001F266E /* UITableView+Extension.swift in Sources */,
 				A06C4B0823213694009FB0B2 /* UIView+SQExtension.swift in Sources */,
 				C32D2040229A9AF6006279C5 /* HomeController.swift in Sources */,
-				A04B2627238E7CED002BB712 /* ViewControllera.m in Sources */,
 				C32D2044229A9B1B006279C5 /* ThreeController.swift in Sources */,
 				A02D29A023363E1100CDBB9E /* InterUtil.swift in Sources */,
 				A0D1213D2322659E001F266E /* String+SQExtension.swift in Sources */,
