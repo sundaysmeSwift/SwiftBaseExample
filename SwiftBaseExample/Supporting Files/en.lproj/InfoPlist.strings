@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  SwiftBaseExample
+
+  Created by administrator on 2019/5/26.
+  Copyright © 2019 administrator. All rights reserved.
+*/
+CFBundleDisplayName = "Localizable App Name";
+
